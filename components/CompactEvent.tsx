@@ -1,6 +1,7 @@
 "use client";
 
 import { MapPin, Phone, Mail, Clock, Info, Award, Gem, Crown, Star, Sparkles, Diamond, Trophy, Users } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 interface TicketTier {
   name: string;
@@ -10,6 +11,17 @@ interface TicketTier {
   soldOut?: boolean;
   capacity: number;
 }
+
+interface TimeRemaining {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+}
+
+// ⚙️ REGISTRATION LAUNCH CONFIGURATION
+// Set the registration opening date and time (IST)
+const REGISTRATION_OPEN_DATE = new Date('2024-11-02T12:00:00+05:30'); // Nov 2, 2024, 12:00 PM IST
 
 // ⚙️ CONFIGURATION: Change soldOut from false to true to mark a pass as SOLD OUT
 // Example: soldOut: true will show "Sold Out" badge and disable the button
@@ -24,6 +36,48 @@ const ticketTiers: TicketTier[] = [
 ];
 
 export default function CompactEvent() {
+  const [timeRemaining, setTimeRemaining] = useState<TimeRemaining | null>(null);
+  const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
+
+  useEffect(() => {
+    const calculateTimeRemaining = () => {
+      const now = new Date().getTime();
+      const targetTime = REGISTRATION_OPEN_DATE.getTime();
+      const difference = targetTime - now;
+
+      if (difference <= 0) {
+        setIsRegistrationOpen(true);
+        return null;
+      }
+
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+      return { days, hours, minutes, seconds };
+    };
+
+    // Initial calculation
+    const initial = calculateTimeRemaining();
+    setTimeRemaining(initial);
+    if (initial === null) {
+      setIsRegistrationOpen(true);
+    }
+
+    // Update every second
+    const interval = setInterval(() => {
+      const remaining = calculateTimeRemaining();
+      setTimeRemaining(remaining);
+      if (remaining === null) {
+        setIsRegistrationOpen(true);
+        clearInterval(interval);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#f5e6e8] via-[#fdf5f7] to-[#fff9f0] flex items-center justify-center p-4 overflow-hidden relative">
       {/* Full-size Gurudev Background Image */}
@@ -120,11 +174,11 @@ export default function CompactEvent() {
           </div>
 
           {/* Right Column - Ticket Tiers */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 relative">
             <h3 className="text-2xl font-serif text-[#2c3e50] text-center mb-4 font-bold">Choose Your Path to Bliss</h3>
             
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-3">
-              {ticketTiers.map((tier, index) => {
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-3 relative">
+              {ticketTiers.filter(tier => tier.name !== "Teacher Special").map((tier, index) => {
                 const IconComponent = tier.icon;
                 return (
                   <div
@@ -143,7 +197,7 @@ export default function CompactEvent() {
                         <IconComponent className="w-6 h-6 text-white" />
                       </div>
                       <h4 className="text-[#2c3e50] font-bold text-sm mb-2">{tier.name}</h4>
-                      <p className="text-[#d4af37] font-bold text-lg mb-1">{tier.price}</p>
+                      {isRegistrationOpen && <p className="text-[#d4af37] font-bold text-lg mb-1">{tier.price}</p>}
                       <div className="flex items-center justify-center gap-1 mb-3">
                         <Users className="w-3 h-3 text-[#2c3e50]" />
                         <p className="text-[#2c3e50] text-xs">
@@ -171,6 +225,38 @@ export default function CompactEvent() {
                   </div>
                 );
               })}
+              
+              {/* Countdown Overlay - Only shown when registration is closed */}
+              {!isRegistrationOpen && timeRemaining && (
+                <div className="absolute inset-0 backdrop-blur-md bg-white/40 rounded-xl flex items-center justify-center z-20">
+                  <div className="text-center p-6">
+                    <h3 className="text-2xl font-serif text-[#2c3e50] font-bold mb-4">
+                      Registrations Opening Soon!
+                    </h3>
+                    <div className="grid grid-cols-4 gap-3 mb-4">
+                      <div className="bg-white/60 backdrop-blur-sm rounded-lg p-3">
+                        <div className="text-3xl font-bold text-[#d4af37]">{timeRemaining.days}</div>
+                        <div className="text-xs text-[#2c3e50] font-semibold">DAYS</div>
+                      </div>
+                      <div className="bg-white/60 backdrop-blur-sm rounded-lg p-3">
+                        <div className="text-3xl font-bold text-[#d4af37]">{timeRemaining.hours}</div>
+                        <div className="text-xs text-[#2c3e50] font-semibold">HOURS</div>
+                      </div>
+                      <div className="bg-white/60 backdrop-blur-sm rounded-lg p-3">
+                        <div className="text-3xl font-bold text-[#d4af37]">{timeRemaining.minutes}</div>
+                        <div className="text-xs text-[#2c3e50] font-semibold">MINUTES</div>
+                      </div>
+                      <div className="bg-white/60 backdrop-blur-sm rounded-lg p-3">
+                        <div className="text-3xl font-bold text-[#d4af37]">{timeRemaining.seconds}</div>
+                        <div className="text-xs text-[#2c3e50] font-semibold">SECONDS</div>
+                      </div>
+                    </div>
+                    <p className="text-sm text-[#2c3e50] italic">
+                      November 2, 2024 at 12:00 PM IST
+                    </p>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Additional Info */}
