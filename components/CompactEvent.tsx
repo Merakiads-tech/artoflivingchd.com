@@ -21,7 +21,7 @@ interface TimeRemaining {
 
 // ⚙️ REGISTRATION LAUNCH CONFIGURATION
 // Set the registration opening date and time (IST)
-const REGISTRATION_OPEN_DATE = new Date('2024-11-02T12:00:00+05:30'); // Nov 2, 2024, 12:00 PM IST
+const REGISTRATION_OPEN_DATE = new Date('2025-10-30T00:41:00+05:30'); // Nov 2, 2025, 12:00 PM IST
 
 // ⚙️ CONFIGURATION: Change soldOut from false to true to mark a pass as SOLD OUT
 // Example: soldOut: true will show "Sold Out" badge and disable the button
@@ -174,11 +174,13 @@ export default function CompactEvent() {
           </div>
 
           {/* Right Column - Ticket Tiers */}
-          <div className="lg:col-span-2 relative">
+          <div className="lg:col-span-2">
             <h3 className="text-2xl font-serif text-[#2c3e50] text-center mb-4 font-bold">Choose Your Path to Bliss</h3>
             
+            <div className="relative">
+            
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-3 relative">
-              {ticketTiers.filter(tier => tier.name !== "Teacher Special").map((tier, index) => {
+              {ticketTiers.map((tier, index) => {
                 const IconComponent = tier.icon;
                 return (
                   <div
@@ -198,12 +200,14 @@ export default function CompactEvent() {
                       </div>
                       <h4 className="text-[#2c3e50] font-bold text-sm mb-2">{tier.name}</h4>
                       {isRegistrationOpen && <p className="text-[#d4af37] font-bold text-lg mb-1">{tier.price}</p>}
-                      <div className="flex items-center justify-center gap-1 mb-3">
-                        <Users className="w-3 h-3 text-[#2c3e50]" />
-                        <p className="text-[#2c3e50] text-xs">
-                          {tier.capacity} {tier.capacity === 1 ? 'Person' : 'People'}
-                        </p>
-                      </div>
+                      {isRegistrationOpen && (
+                        <div className="flex items-center justify-center gap-1 mb-3">
+                          <Users className="w-3 h-3 text-[#2c3e50]" />
+                          <p className="text-[#2c3e50] text-xs">
+                            {tier.capacity} {tier.capacity === 1 ? 'Person' : 'People'}
+                          </p>
+                        </div>
+                      )}
                       {tier.soldOut ? (
                         <button
                           disabled
@@ -226,33 +230,33 @@ export default function CompactEvent() {
                 );
               })}
               
-              {/* Countdown Overlay - Only shown when registration is closed */}
+              {/* Countdown Overlay - Only covers tickets grid */}
               {!isRegistrationOpen && timeRemaining && (
-                <div className="absolute inset-0 backdrop-blur-md bg-white/40 rounded-xl flex items-center justify-center z-20">
-                  <div className="text-center p-6">
-                    <h3 className="text-2xl font-serif text-[#2c3e50] font-bold mb-4">
+                <div className="absolute inset-0 backdrop-blur-xl bg-gradient-to-br from-[#2c3e50]/80 via-[#34495e]/75 to-[#2c3e50]/80 rounded-xl flex items-center justify-center z-20">
+                  <div className="text-center p-8 max-w-2xl">
+                    <h3 className="text-4xl font-serif text-white font-bold mb-6 drop-shadow-lg">
                       Registrations Opening Soon!
                     </h3>
-                    <div className="grid grid-cols-4 gap-3 mb-4">
-                      <div className="bg-white/60 backdrop-blur-sm rounded-lg p-3">
-                        <div className="text-3xl font-bold text-[#d4af37]">{timeRemaining.days}</div>
-                        <div className="text-xs text-[#2c3e50] font-semibold">DAYS</div>
+                    <div className="grid grid-cols-4 gap-4 mb-6">
+                      <div className="bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-xl">
+                        <div className="text-4xl font-bold text-[#d4af37] mb-1">{timeRemaining.days}</div>
+                        <div className="text-xs text-[#2c3e50] font-semibold tracking-wider">DAYS</div>
                       </div>
-                      <div className="bg-white/60 backdrop-blur-sm rounded-lg p-3">
-                        <div className="text-3xl font-bold text-[#d4af37]">{timeRemaining.hours}</div>
-                        <div className="text-xs text-[#2c3e50] font-semibold">HOURS</div>
+                      <div className="bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-xl">
+                        <div className="text-4xl font-bold text-[#d4af37] mb-1">{timeRemaining.hours}</div>
+                        <div className="text-xs text-[#2c3e50] font-semibold tracking-wider">HOURS</div>
                       </div>
-                      <div className="bg-white/60 backdrop-blur-sm rounded-lg p-3">
-                        <div className="text-3xl font-bold text-[#d4af37]">{timeRemaining.minutes}</div>
-                        <div className="text-xs text-[#2c3e50] font-semibold">MINUTES</div>
+                      <div className="bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-xl">
+                        <div className="text-4xl font-bold text-[#d4af37] mb-1">{timeRemaining.minutes}</div>
+                        <div className="text-xs text-[#2c3e50] font-semibold tracking-wider">MINUTES</div>
                       </div>
-                      <div className="bg-white/60 backdrop-blur-sm rounded-lg p-3">
-                        <div className="text-3xl font-bold text-[#d4af37]">{timeRemaining.seconds}</div>
-                        <div className="text-xs text-[#2c3e50] font-semibold">SECONDS</div>
+                      <div className="bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-xl">
+                        <div className="text-4xl font-bold text-[#d4af37] mb-1">{timeRemaining.seconds}</div>
+                        <div className="text-xs text-[#2c3e50] font-semibold tracking-wider">SECONDS</div>
                       </div>
                     </div>
-                    <p className="text-sm text-[#2c3e50] italic">
-                      November 2, 2024 at 12:00 PM IST
+                    <p className="text-lg text-white font-semibold drop-shadow-md">
+                      November 2, 2025 at 12:00 PM IST
                     </p>
                   </div>
                 </div>
@@ -291,6 +295,7 @@ export default function CompactEvent() {
                 "When you are grateful, fear disappears and abundance appears"
               </p>
               <p className="text-[#d4af37] text-xs font-semibold">— Sri Sri Ravi Shankar</p>
+            </div>
             </div>
           </div>
         </div>
