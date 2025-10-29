@@ -74,20 +74,15 @@ export default function ModernEvent() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#1a1a2e] via-[#2d2d44] to-[#1a1a2e] flex items-center justify-center p-6 overflow-hidden relative">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-[#d4af37]/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#d4a5a5]/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-      </div>
-
+    <div className="min-h-screen bg-gradient-to-br from-[#f5e6e8] via-[#fdf5f7] to-[#fff9f0] flex items-center justify-center p-6 overflow-hidden relative">
       {/* Gurudev Background Image */}
       <div className="absolute inset-0 z-0">
         <img 
           src="/g.webp" 
           alt="Gurudev Sri Sri Ravi Shankar" 
-          className="w-full h-full object-cover opacity-5"
+          className="w-full h-full object-cover opacity-40"
         />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#f5e6e8]/30 via-[#fdf5f7]/30 to-[#fff9f0]/30"></div>
       </div>
 
       {/* Main Container */}
@@ -95,29 +90,29 @@ export default function ModernEvent() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-[90vh]">
           
           {/* Left Panel - Hero Section */}
-          <div className="lg:col-span-5 flex flex-col justify-between bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/20 shadow-2xl">
+          <div className="lg:col-span-5 flex flex-col justify-between bg-white/20 backdrop-blur-sm rounded-3xl p-8 border border-white/30 shadow-2xl">
             {/* Logo */}
             <div className="flex justify-center mb-6">
               <img 
                 src="/aol_.webp" 
                 alt="The Art of Living" 
-                className="h-14 w-auto object-contain opacity-90"
+                className="h-14 w-auto object-contain"
               />
             </div>
 
             {/* Event Title */}
             <div className="flex-1 flex flex-col justify-center text-center">
               <div className="mb-8">
-                <h1 className="text-6xl font-serif text-white mb-3 tracking-tight leading-tight">
+                <h1 className="text-6xl font-serif text-[#2c3e50] mb-3 tracking-tight leading-tight drop-shadow-md">
                   SOAKING
                 </h1>
                 <div className="flex items-center justify-center gap-3 mb-3">
-                  <span className="text-3xl font-serif text-white/90">IN</span>
-                  <span className="text-6xl font-script text-[#d4af37] italic">Bliss</span>
+                  <span className="text-3xl font-serif text-[#2c3e50] drop-shadow-md">IN</span>
+                  <span className="text-6xl font-script text-[#d4a5a5] italic drop-shadow-md">Bliss</span>
                 </div>
-                <h2 className="text-2xl font-serif text-white/80 tracking-wide mb-2">WITH</h2>
-                <h2 className="text-4xl font-serif text-[#d4af37] tracking-wider font-bold">Gurudev</h2>
-                <h3 className="text-2xl font-serif text-white/70 mt-2">Sri Sri Ravi Shankar Ji</h3>
+                <h2 className="text-2xl font-serif text-[#2c3e50] tracking-wide mb-2 drop-shadow-md">WITH</h2>
+                <h2 className="text-4xl font-serif text-[#2c3e50] tracking-wider font-bold drop-shadow-md">Gurudev</h2>
+                <h3 className="text-2xl font-serif text-[#2c3e50] mt-2 drop-shadow-md">Sri Sri Ravi Shankar Ji</h3>
               </div>
 
               {/* Event Details Card */}
@@ -139,14 +134,14 @@ export default function ModernEvent() {
 
             {/* Quote */}
             <div className="mt-6 text-center">
-              <p className="text-white/70 text-sm italic leading-relaxed">
+              <p className="text-[#2c3e50] text-sm italic leading-relaxed">
                 "When you are grateful, fear disappears<br/>and abundance appears"
               </p>
               <p className="text-[#d4af37] text-xs font-semibold mt-2">— Sri Sri Ravi Shankar</p>
             </div>
 
             {/* Contact Info */}
-            <div className="mt-6 flex items-center justify-center gap-6 text-white/60 text-xs">
+            <div className="mt-6 flex items-center justify-center gap-6 text-[#2c3e50] text-xs">
               <div className="flex items-center gap-1">
                 <Phone className="w-3 h-3" />
                 <span>981-5540-544</span>
@@ -159,35 +154,31 @@ export default function ModernEvent() {
           </div>
 
           {/* Right Panel - Tickets */}
-          <div className="lg:col-span-7 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/20 shadow-2xl relative overflow-hidden">
-            <h3 className="text-3xl font-serif text-white text-center mb-6 font-bold">
+          <div className="lg:col-span-7 bg-white/20 backdrop-blur-sm rounded-3xl p-8 border border-white/30 shadow-2xl relative overflow-hidden">
+            <h3 className="text-3xl font-serif text-[#2c3e50] text-center mb-6 font-bold drop-shadow-md">
               Choose Your Experience
             </h3>
 
             {/* Tickets Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 h-[calc(100%-80px)] overflow-y-auto pr-2 custom-scrollbar relative">
+            <div className="grid grid-cols-3 md:grid-cols-4 gap-3 h-[calc(100%-80px)] overflow-y-auto pr-2 custom-scrollbar relative">
               {ticketTiers.map((tier, index) => {
-                const IconComponent = tier.icon;
                 return (
                   <div
                     key={index}
-                    className="group relative bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md rounded-2xl p-5 border border-white/20 hover:border-[#d4af37]/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl flex flex-col justify-between"
+                    className="group relative bg-white/30 backdrop-blur-sm rounded-xl p-3 border border-white/40 hover:border-[#d4af37]/60 transition-all duration-300 hover:scale-105 hover:shadow-xl flex flex-col justify-between"
                   >
                     {tier.soldOut && (
-                      <div className="absolute top-3 right-3 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-semibold z-10">
+                      <div className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full font-semibold z-10">
                         Sold Out
                       </div>
                     )}
                     
                     <div>
-                      <div className="w-14 h-14 mx-auto mb-3 bg-gradient-to-br from-[#d4af37] to-[#c9a961] rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                        <IconComponent className="w-7 h-7 text-white" />
-                      </div>
-                      <h4 className="text-white font-bold text-base mb-2 text-center">{tier.name}</h4>
+                      <h4 className="text-[#2c3e50] font-bold text-sm mb-1 text-center">{tier.name}</h4>
                       {isRegistrationOpen && (
                         <>
-                          <p className="text-[#d4af37] font-bold text-xl mb-2 text-center">{tier.price}</p>
-                          <div className="flex items-center justify-center gap-1 mb-3 text-white/60 text-xs">
+                          <p className="text-[#d4af37] font-bold text-base mb-1 text-center">{tier.price}</p>
+                          <div className="flex items-center justify-center gap-1 mb-2 text-[#2c3e50]/60 text-xs">
                             <Users className="w-3 h-3" />
                             <span>{tier.capacity} {tier.capacity === 1 ? 'Person' : 'People'}</span>
                           </div>
@@ -198,7 +189,7 @@ export default function ModernEvent() {
                     {tier.soldOut ? (
                       <button
                         disabled
-                        className="w-full px-4 py-2.5 bg-gray-500/50 text-white/50 rounded-xl text-xs font-semibold cursor-not-allowed"
+                        className="w-full px-3 py-1.5 bg-gray-400 text-white rounded-lg text-xs font-semibold cursor-not-allowed"
                       >
                         Sold Out
                       </button>
@@ -207,9 +198,9 @@ export default function ModernEvent() {
                         href={tier.bookingLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group/btn w-full px-4 py-2.5 bg-gradient-to-r from-[#d4af37] to-[#c9a961] text-white rounded-xl text-xs font-semibold hover:from-[#c9a961] hover:to-[#d4af37] transition-all duration-300 shadow-lg flex items-center justify-center gap-2"
+                        className="group/btn w-full px-3 py-1.5 bg-gradient-to-r from-[#d4af37] to-[#c9a961] text-white rounded-lg text-xs font-semibold hover:from-[#c9a961] hover:to-[#d4af37] transition-all duration-300 shadow-md flex items-center justify-center gap-1"
                       >
-                        <span>Register Now</span>
+                        <span>Register</span>
                         <ArrowRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
                       </a>
                     )}
@@ -219,30 +210,30 @@ export default function ModernEvent() {
 
               {/* Countdown Overlay */}
               {!isRegistrationOpen && timeRemaining && (
-                <div className="absolute inset-0 backdrop-blur-2xl bg-gradient-to-br from-[#1a1a2e]/95 via-[#2d2d44]/95 to-[#1a1a2e]/95 rounded-2xl flex items-center justify-center z-20">
-                  <div className="text-center p-8">
-                    <h3 className="text-4xl font-serif text-white font-bold mb-8 animate-pulse">
+                <div className="absolute inset-0 backdrop-blur-xl bg-gradient-to-br from-[#2c3e50]/80 via-[#34495e]/75 to-[#2c3e50]/80 rounded-2xl flex items-center justify-center z-20">
+                  <div className="text-center p-8 max-w-2xl">
+                    <h3 className="text-4xl font-serif text-white font-bold mb-6 drop-shadow-lg">
                       Registrations Opening Soon!
                     </h3>
-                    <div className="grid grid-cols-4 gap-4 mb-8">
-                      <div className="bg-gradient-to-br from-[#d4af37] to-[#c9a961] rounded-2xl p-4 shadow-2xl">
-                        <div className="text-5xl font-bold text-white mb-2">{timeRemaining.days}</div>
-                        <div className="text-xs text-white/80 font-semibold tracking-widest">DAYS</div>
+                    <div className="grid grid-cols-4 gap-4 mb-6">
+                      <div className="bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-xl">
+                        <div className="text-4xl font-bold text-[#d4af37] mb-1">{timeRemaining.days}</div>
+                        <div className="text-xs text-[#2c3e50] font-semibold tracking-wider">DAYS</div>
                       </div>
-                      <div className="bg-gradient-to-br from-[#d4af37] to-[#c9a961] rounded-2xl p-4 shadow-2xl">
-                        <div className="text-5xl font-bold text-white mb-2">{timeRemaining.hours}</div>
-                        <div className="text-xs text-white/80 font-semibold tracking-widest">HOURS</div>
+                      <div className="bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-xl">
+                        <div className="text-4xl font-bold text-[#d4af37] mb-1">{timeRemaining.hours}</div>
+                        <div className="text-xs text-[#2c3e50] font-semibold tracking-wider">HOURS</div>
                       </div>
-                      <div className="bg-gradient-to-br from-[#d4af37] to-[#c9a961] rounded-2xl p-4 shadow-2xl">
-                        <div className="text-5xl font-bold text-white mb-2">{timeRemaining.minutes}</div>
-                        <div className="text-xs text-white/80 font-semibold tracking-widest">MINS</div>
+                      <div className="bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-xl">
+                        <div className="text-4xl font-bold text-[#d4af37] mb-1">{timeRemaining.minutes}</div>
+                        <div className="text-xs text-[#2c3e50] font-semibold tracking-wider">MINUTES</div>
                       </div>
-                      <div className="bg-gradient-to-br from-[#d4af37] to-[#c9a961] rounded-2xl p-4 shadow-2xl">
-                        <div className="text-5xl font-bold text-white mb-2">{timeRemaining.seconds}</div>
-                        <div className="text-xs text-white/80 font-semibold tracking-widest">SECS</div>
+                      <div className="bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-xl">
+                        <div className="text-4xl font-bold text-[#d4af37] mb-1">{timeRemaining.seconds}</div>
+                        <div className="text-xs text-[#2c3e50] font-semibold tracking-wider">SECONDS</div>
                       </div>
                     </div>
-                    <p className="text-xl text-white font-semibold">
+                    <p className="text-lg text-white font-semibold drop-shadow-md">
                       November 2, 2025 at 12:00 PM IST
                     </p>
                   </div>
@@ -251,7 +242,7 @@ export default function ModernEvent() {
             </div>
 
             {/* Important Notice */}
-            <div className="mt-4 flex items-center justify-center gap-4 text-white/50 text-xs">
+            <div className="mt-4 flex items-center justify-center gap-4 text-[#2c3e50]/60 text-xs">
               <div className="flex items-center gap-1">
                 <Info className="w-3 h-3" />
                 <span>Bring valid ID proof</span>
@@ -269,7 +260,7 @@ export default function ModernEvent() {
           width: 6px;
         }
         .custom-scrollbar::-webkit-scrollbar-track {
-          background: rgba(255, 255, 255, 0.05);
+          background: rgba(212, 175, 55, 0.1);
           border-radius: 10px;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb {
