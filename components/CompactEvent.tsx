@@ -16,10 +16,10 @@ interface TicketTier {
 const ticketTiers: TicketTier[] = [
   { name: "Bronze", price: "₹2,100", bookingLink: "https://www.artofliving.online/donate.php?nca_id=922881", icon: Award, soldOut: false, capacity: 1 },
   { name: "Teacher Special", price: "₹7,000", bookingLink: "https://www.artofliving.online/donate.php?nca_id=922887", icon: Gem, soldOut: false, capacity: 4 },
-  { name: "Silver", price: "₹11,000", bookingLink: "https://www.artofliving.online/donate.php?nca_id=922871", icon: Star, soldOut: true, capacity: 2 }, // SOLD OUT
+  { name: "Silver", price: "₹11,000", bookingLink: "https://www.artofliving.online/donate.php?nca_id=922871", icon: Star, soldOut: false, capacity: 2 }, // SOLD OUT
   { name: "Gold", price: "₹51,000", bookingLink: "https://www.artofliving.online/donate.php?nca_id=922867", icon: Sparkles, soldOut: false, capacity: 2 },
   { name: "Diamond", price: "₹1,00,000", bookingLink: "https://www.artofliving.online/donate.php?nca_id=922865", icon: Diamond, soldOut: false, capacity: 2 },
-  { name: "Platinum", price: "₹2,50,000", bookingLink: "https://www.artofliving.online/donate.php?nca_id=922862", icon: Trophy, soldOut: true, capacity: 4 }, // SOLD OUT
+  { name: "Platinum", price: "₹2,50,000", bookingLink: "https://www.artofliving.online/donate.php?nca_id=922862", icon: Trophy, soldOut: false, capacity: 4 }, // SOLD OUT
   { name: "Emerald", price: "₹11,00,000", bookingLink: "https://www.artofliving.online/donate.php?nca_id=922852", icon: Crown, soldOut: false, capacity: 4 },
 ];
 
