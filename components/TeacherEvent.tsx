@@ -11,8 +11,9 @@ interface TimeRemaining {
 }
 
 // ⚙️ TEACHER REGISTRATION LAUNCH CONFIGURATION
-// Opens 2 hours before main registration (Nov 2, 10:00 AM IST)
-const TEACHER_REGISTRATION_OPEN_DATE = new Date('2024-11-02T10:00:00+05:30');
+// Opens 2 hours before main registration
+const MAIN_REGISTRATION_OPEN_DATE = new Date('2025-10-30T00:38:00+05:30');
+const TEACHER_REGISTRATION_OPEN_DATE = new Date(MAIN_REGISTRATION_OPEN_DATE.getTime() - 2 * 60 * 60 * 1000); // 2 hours before main
 
 const teacherTier = {
   name: "Teacher Family Special",
@@ -128,12 +129,14 @@ export default function TeacherEvent() {
                 </div>
                 <h4 className="text-[#2c3e50] font-bold text-xl mb-3">{teacherTier.name}</h4>
                 {isRegistrationOpen && <p className="text-[#d4af37] font-bold text-2xl mb-2">{teacherTier.price}</p>}
-                <div className="flex items-center justify-center gap-2 mb-4">
-                  <Users className="w-4 h-4 text-[#2c3e50]" />
-                  <p className="text-[#2c3e50] text-sm">
-                    {teacherTier.capacity} People
-                  </p>
-                </div>
+                {isRegistrationOpen && (
+                  <div className="flex items-center justify-center gap-2 mb-4">
+                    <Users className="w-4 h-4 text-[#2c3e50]" />
+                    <p className="text-[#2c3e50] text-sm">
+                      {teacherTier.capacity} People
+                    </p>
+                  </div>
+                )}
                 {teacherTier.soldOut ? (
                   <button
                     disabled
@@ -157,33 +160,41 @@ export default function TeacherEvent() {
 
           {/* Countdown Overlay for Teachers */}
           {!isRegistrationOpen && timeRemaining && (
-            <div className="absolute inset-0 backdrop-blur-md bg-white/40 rounded-xl flex items-center justify-center z-20">
-              <div className="text-center p-6">
-                <h3 className="text-2xl font-serif text-[#2c3e50] font-bold mb-4">
+            <div className="absolute inset-0 backdrop-blur-xl bg-gradient-to-br from-[#2c3e50]/80 via-[#34495e]/75 to-[#2c3e50]/80 rounded-xl flex items-center justify-center z-20">
+              <div className="text-center p-8 max-w-2xl">
+                <h3 className="text-4xl font-serif text-white font-bold mb-6 drop-shadow-lg">
                   Teacher Registration Opening Soon!
                 </h3>
-                <div className="grid grid-cols-4 gap-3 mb-4">
-                  <div className="bg-white/60 backdrop-blur-sm rounded-lg p-3">
-                    <div className="text-3xl font-bold text-[#d4af37]">{timeRemaining.days}</div>
-                    <div className="text-xs text-[#2c3e50] font-semibold">DAYS</div>
+                <div className="grid grid-cols-4 gap-4 mb-6">
+                  <div className="bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-xl">
+                    <div className="text-4xl font-bold text-[#d4af37] mb-1">{timeRemaining.days}</div>
+                    <div className="text-xs text-[#2c3e50] font-semibold tracking-wider">DAYS</div>
                   </div>
-                  <div className="bg-white/60 backdrop-blur-sm rounded-lg p-3">
-                    <div className="text-3xl font-bold text-[#d4af37]">{timeRemaining.hours}</div>
-                    <div className="text-xs text-[#2c3e50] font-semibold">HOURS</div>
+                  <div className="bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-xl">
+                    <div className="text-4xl font-bold text-[#d4af37] mb-1">{timeRemaining.hours}</div>
+                    <div className="text-xs text-[#2c3e50] font-semibold tracking-wider">HOURS</div>
                   </div>
-                  <div className="bg-white/60 backdrop-blur-sm rounded-lg p-3">
-                    <div className="text-3xl font-bold text-[#d4af37]">{timeRemaining.minutes}</div>
-                    <div className="text-xs text-[#2c3e50] font-semibold">MINUTES</div>
+                  <div className="bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-xl">
+                    <div className="text-4xl font-bold text-[#d4af37] mb-1">{timeRemaining.minutes}</div>
+                    <div className="text-xs text-[#2c3e50] font-semibold tracking-wider">MINUTES</div>
                   </div>
-                  <div className="bg-white/60 backdrop-blur-sm rounded-lg p-3">
-                    <div className="text-3xl font-bold text-[#d4af37]">{timeRemaining.seconds}</div>
-                    <div className="text-xs text-[#2c3e50] font-semibold">SECONDS</div>
+                  <div className="bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-xl">
+                    <div className="text-4xl font-bold text-[#d4af37] mb-1">{timeRemaining.seconds}</div>
+                    <div className="text-xs text-[#2c3e50] font-semibold tracking-wider">SECONDS</div>
                   </div>
                 </div>
-                <p className="text-sm text-[#2c3e50] italic">
-                  November 2, 2024 at 10:00 AM IST
+                <p className="text-lg text-white font-semibold drop-shadow-md mb-2">
+                  {TEACHER_REGISTRATION_OPEN_DATE.toLocaleString('en-IN', { 
+                    month: 'long', 
+                    day: 'numeric', 
+                    year: 'numeric', 
+                    hour: 'numeric', 
+                    minute: 'numeric',
+                    hour12: true,
+                    timeZone: 'Asia/Kolkata'
+                  })} IST
                 </p>
-                <p className="text-xs text-[#2c3e50] mt-2">
+                <p className="text-sm text-white/80">
                   (2 hours before general registration)
                 </p>
               </div>
