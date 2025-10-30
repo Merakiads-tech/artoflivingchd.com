@@ -178,7 +178,7 @@ export default function CleanEvent() {
               {sortedTicketTiers.map((tier, index) => (
                 <div
                   key={index}
-                  className={`bg-white/90 backdrop-blur-sm rounded-xl p-3 shadow-md transition-all duration-300 border border-[#d4af37]/20 ${
+                  className={`bg-white rounded-xl p-3 shadow-md transition-all duration-300 ${
                     tier.soldOut ? 'opacity-60' : 'hover:shadow-lg hover:scale-105'
                   } relative flex flex-col items-center text-center`}
                 >
@@ -187,22 +187,17 @@ export default function CleanEvent() {
                       Sold Out
                     </div>
                   )}
-                  <h4 className="text-base font-bold text-[#2c3e50] mb-1">{tier.name}</h4>
+                  <h4 className="text-base font-bold text-[#1a1a1a] mb-1">{tier.name}</h4>
                   {isRegistrationOpen && (
                     <>
                       <p className="text-2xl font-bold text-[#d4af37] mb-0.5">{tier.price}</p>
-                      <div className="flex items-center justify-center gap-1 mb-2">
-                        <Users className="w-3 h-3 text-[#2c3e50]" />
-                        <p className="text-xs text-gray-600">
-                          {tier.capacity} {tier.capacity === 1 ? 'Person' : 'People'}
-                        </p>
-                      </div>
+                      <p className="text-xs text-gray-600 mb-2">{tier.capacity} {tier.capacity === 1 ? 'person' : 'people'}</p>
                     </>
                   )}
                   {tier.soldOut ? (
                     <button
                       disabled
-                      className="w-full bg-gray-400 text-white py-1.5 rounded-lg text-sm font-semibold cursor-not-allowed mt-auto"
+                      className="w-full bg-gray-400 text-white py-1.5 rounded-full text-sm font-semibold cursor-not-allowed mt-auto"
                     >
                       Sold Out
                     </button>
@@ -211,9 +206,9 @@ export default function CleanEvent() {
                       href={tier.bookingLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full bg-gradient-to-r from-[#2c3e50] to-[#34495e] text-white py-1.5 rounded-lg text-sm font-semibold hover:from-[#34495e] hover:to-[#2c3e50] transition-all duration-300 mt-auto"
+                      className="w-full bg-gradient-to-r from-[#d4af37] to-[#c9a961] text-white py-1.5 rounded-full text-sm font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105 mt-auto"
                     >
-                      Buy Pass
+                      Secure Your Spot
                     </a>
                   ) : (
                     <div className="w-full py-1.5"></div>
