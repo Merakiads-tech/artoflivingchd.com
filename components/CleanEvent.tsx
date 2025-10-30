@@ -1,6 +1,6 @@
 "use client";
 
-import { MapPin, Clock, Users } from 'lucide-react';
+import { MapPin, Clock, Users, Info, Phone, Mail } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 interface TicketTier {
@@ -73,12 +73,12 @@ export default function CleanEvent() {
 
   return (
     <div className="min-h-screen bg-[#f5ebe5] flex items-center justify-center p-6">
-      <div className="max-w-5xl w-full mx-auto">
+      <div className="max-w-6xl w-full mx-auto">
         {/* Top Section with Gurudev and Title */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-6 items-start">
           {/* Left - Gurudev Image */}
-          <div className="flex items-start justify-center lg:justify-start">
-            <div className="relative w-full max-w-xs">
+          <div className="flex items-start justify-start">
+            <div className="relative w-full max-w-md">
               <img 
                 src="/g_isolated.png" 
                 alt="Gurudev Sri Sri Ravi Shankar" 
@@ -88,19 +88,9 @@ export default function CleanEvent() {
           </div>
 
           {/* Right - Event Details */}
-          <div className="flex flex-col justify-center text-center lg:text-left">
-            {/* Buy Pass Button - Top Right */}
-            <div className="flex justify-center lg:justify-end mb-4">
-              <a
-                href="#tickets"
-                className="bg-gradient-to-r from-[#d4af37] to-[#c9a961] text-white px-6 py-2.5 rounded-full font-bold text-base shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-              >
-                Buy Pass
-              </a>
-            </div>
-            
+          <div className="flex flex-col justify-start pt-8">
             <h1 className="text-4xl font-serif text-[#2c3e50] mb-1 tracking-wide drop-shadow-md">SOAKING</h1>
-            <div className="flex items-center justify-center lg:justify-start gap-2 mb-1">
+            <div className="flex items-center gap-2 mb-1">
               <span className="text-2xl font-serif text-[#2c3e50] drop-shadow-md">IN</span>
               <span className="text-4xl font-script text-[#d4a5a5] italic drop-shadow-md">Bliss</span>
             </div>
@@ -109,39 +99,74 @@ export default function CleanEvent() {
             <h2 className="text-3xl font-serif text-[#2c3e50] tracking-wider font-bold drop-shadow-md mb-6">Sri Sri Ravi Shankar Ji</h2>
             
             {/* Date Badge */}
-            <div className="inline-block bg-[#1a3a52] text-white rounded-2xl px-6 py-3 w-fit mx-auto lg:mx-0">
+            <div className="inline-block bg-[#1a3a52] text-white rounded-2xl px-6 py-3 w-fit mb-8">
               <p className="text-2xl font-bold">
                 22<sup className="text-sm">nd</sup> NOV 2025
               </p>
               <p className="text-xs tracking-widest mt-1">CHANDIGARH</p>
             </div>
+
+            {/* Venue & Timing Combined */}
+            <div className="bg-white rounded-2xl p-5 shadow-lg mb-4">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-8 h-8 bg-[#d4af37] rounded-full flex items-center justify-center">
+                  <Clock className="w-4 h-4 text-white" />
+                </div>
+                <h4 className="text-lg font-bold text-[#2c3e50]">Event Details</h4>
+              </div>
+              <div className="space-y-2">
+                <div>
+                  <p className="text-sm text-gray-500">When</p>
+                  <p className="text-base text-gray-700 font-semibold">Saturday, 22nd Nov 2025</p>
+                  <p className="text-base text-gray-700">5:00 PM - 8:00 PM</p>
+                </div>
+                <div className="pt-2 border-t border-gray-200">
+                  <p className="text-sm text-gray-500">Where</p>
+                  <p className="text-base text-gray-700 font-semibold">Palm Resort</p>
+                  <p className="text-sm text-gray-600">Zirakpur-Ambala Road, Chandigarh</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Important Information */}
+            <div className="bg-gradient-to-r from-[#fff9f0] to-[#fef5e7] border-l-4 border-[#d4af37] rounded-lg p-4 shadow-md">
+              <div className="flex items-start gap-2">
+                <Info className="w-5 h-5 text-[#d4af37] mt-0.5 flex-shrink-0" />
+                <div>
+                  <h4 className="text-base font-bold text-[#2c3e50] mb-1">Important</h4>
+                  <p className="text-sm text-gray-700 leading-relaxed">
+                    Seating is allocated on a first-come, first-served basis. Early registrations secure preferred seating closer to Gurudev.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Tickets Section */}
-        <div id="tickets" className="mb-8">
-          <h3 className="text-2xl font-bold text-center text-[#2c3e50] mb-6 drop-shadow-md">
+        <div id="tickets" className="mb-6">
+          <h3 className="text-xl font-bold text-center text-[#2c3e50] mb-4 drop-shadow-md">
             Choose Your Path to Bliss
           </h3>
           
-          <div className="relative max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="relative">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3 max-w-4xl mx-auto">
               {ticketTiers.map((tier, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-2xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex flex-col items-center text-center max-w-xs mx-auto w-full"
+                  className="bg-white rounded-xl p-3 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 flex flex-col items-center text-center"
                 >
-                  <h4 className="text-xl font-bold text-[#1a1a1a] mb-2">{tier.name}</h4>
+                  <h4 className="text-base font-bold text-[#1a1a1a] mb-1">{tier.name}</h4>
                   {isRegistrationOpen && (
                     <>
-                      <p className="text-3xl font-bold text-[#d4af37] mb-1">{tier.price}</p>
-                      <p className="text-sm text-gray-600 mb-3">{tier.capacity} {tier.capacity === 1 ? 'person' : 'people'}</p>
+                      <p className="text-2xl font-bold text-[#d4af37] mb-0.5">{tier.price}</p>
+                      <p className="text-xs text-gray-600 mb-2">{tier.capacity} {tier.capacity === 1 ? 'person' : 'people'}</p>
                     </>
                   )}
                   {tier.soldOut ? (
                     <button
                       disabled
-                      className="w-full bg-gray-400 text-white py-2.5 rounded-full font-bold text-base cursor-not-allowed"
+                      className="w-full bg-gray-400 text-white py-1.5 rounded-full font-bold text-sm cursor-not-allowed"
                     >
                       Sold Out
                     </button>
@@ -150,7 +175,7 @@ export default function CleanEvent() {
                       href={tier.bookingLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full bg-gradient-to-r from-[#d4af37] to-[#c9a961] text-white py-2.5 rounded-full font-bold text-base hover:shadow-xl transition-all duration-300 hover:scale-105"
+                      className="w-full bg-gradient-to-r from-[#d4af37] to-[#c9a961] text-white py-1.5 rounded-full font-bold text-sm hover:shadow-lg transition-all duration-300 hover:scale-105"
                     >
                       Secure Your Spot
                     </a>
@@ -193,30 +218,29 @@ export default function CleanEvent() {
           </div>
         </div>
 
-        {/* Bottom Info Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
-          {/* Event Timing */}
-          <div className="bg-white rounded-2xl p-5 shadow-lg">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-8 h-8 bg-[#d4af37] rounded-full flex items-center justify-center">
-                <Clock className="w-4 h-4 text-white" />
+        {/* Contact Section */}
+        <div className="bg-white rounded-2xl p-6 shadow-lg max-w-2xl mx-auto">
+          <h3 className="text-xl font-bold text-center text-[#2c3e50] mb-4">Need Help?</h3>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+            <a href="tel:9815540544" className="flex items-center gap-2 text-gray-700 hover:text-[#d4af37] transition-colors">
+              <div className="w-10 h-10 bg-[#d4af37] rounded-full flex items-center justify-center">
+                <Phone className="w-5 h-5 text-white" />
               </div>
-              <h4 className="text-lg font-bold text-[#2c3e50]">Event Timing</h4>
-            </div>
-            <p className="text-base text-gray-700 ml-11">5:00 PM - 8:00 PM</p>
-            <p className="text-sm text-gray-600 ml-11">Saturday, 22nd Nov 2025</p>
-          </div>
-
-          {/* Venue */}
-          <div className="bg-white rounded-2xl p-5 shadow-lg">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-8 h-8 bg-[#d4af37] rounded-full flex items-center justify-center">
-                <MapPin className="w-4 h-4 text-white" />
+              <div>
+                <p className="text-xs text-gray-500">Call Us</p>
+                <p className="text-base font-semibold">981-5540-544</p>
               </div>
-              <h4 className="text-lg font-bold text-[#2c3e50]">Venue</h4>
-            </div>
-            <p className="text-base text-gray-700 ml-11 font-semibold">Palm Resort</p>
-            <p className="text-sm text-gray-600 ml-11">Zirakpur-Ambala Road,<br/>Chandigarh</p>
+            </a>
+            <div className="hidden md:block w-px h-12 bg-gray-300"></div>
+            <a href="mailto:help@artoflivingchd.com" className="flex items-center gap-2 text-gray-700 hover:text-[#d4af37] transition-colors">
+              <div className="w-10 h-10 bg-[#d4af37] rounded-full flex items-center justify-center">
+                <Mail className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <p className="text-xs text-gray-500">Email Us</p>
+                <p className="text-base font-semibold">help@artoflivingchd.com</p>
+              </div>
+            </a>
           </div>
         </div>
       </div>
