@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Playfair_Display, Dancing_Script } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 
@@ -47,6 +48,7 @@ export default function RootLayout({
       >
         {gaId && <GoogleAnalytics measurementId={gaId} />}
         {children}
+        <Analytics />
       </body>
     </html>
   );
