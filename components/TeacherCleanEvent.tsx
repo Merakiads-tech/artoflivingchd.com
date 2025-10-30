@@ -37,9 +37,9 @@ export default function TeacherCleanEvent() {
   const [hasTriggeredConfetti, setHasTriggeredConfetti] = useState(false);
   const previousTimeRef = useRef<TimeRemaining | null>(null);
 
-  // Enhanced confetti animation function
+  // Enhanced confetti and fireworks animation function
   const triggerConfetti = () => {
-    const duration = 5000; // Increased from 3000ms to 5000ms
+    const duration = 6000; // Extended to 6 seconds
     const animationEnd = Date.now() + duration;
     const colors = ['#d4af37', '#c9a961', '#d4a5a5', '#2c3e50', '#ffffff', '#ffd700', '#ff69b4', '#87ceeb'];
 
@@ -47,8 +47,27 @@ export default function TeacherCleanEvent() {
       return Math.random() * (max - min) + min;
     };
 
-    // Initial burst - big explosion
-    const burstCount = 200;
+    // Fireworks function - creates starburst effect
+    const fireWorks = (x: number, y: number, delay: number = 0) => {
+      setTimeout(() => {
+        confetti({
+          particleCount: 150,
+          spread: 360,
+          origin: { x, y },
+          startVelocity: 50,
+          decay: 0.9,
+          scalar: 2.5, // BIGGER particles for fireworks
+          ticks: 150,
+          zIndex: 9999,
+          colors: colors,
+          shapes: ['circle', 'square'],
+          gravity: 0.8
+        });
+      }, delay);
+    };
+
+    // Initial burst - BIGGER explosion
+    const burstCount = 250;
     confetti({
       particleCount: burstCount,
       spread: 180,
@@ -56,32 +75,49 @@ export default function TeacherCleanEvent() {
       startVelocity: 60,
       ticks: 100,
       zIndex: 9999,
-      colors: colors
+      colors: colors,
+      scalar: 2.0, // BIGGER confetti (was 1.0)
+      shapes: ['circle', 'square']
     });
 
-    // Side bursts
+    // Fireworks sequence - multiple explosions
+    fireWorks(0.2, 0.3, 300);
+    fireWorks(0.8, 0.3, 500);
+    fireWorks(0.5, 0.2, 700);
+    fireWorks(0.3, 0.4, 1200);
+    fireWorks(0.7, 0.4, 1400);
+    fireWorks(0.5, 0.3, 1800);
+    fireWorks(0.15, 0.35, 2200);
+    fireWorks(0.85, 0.35, 2400);
+    fireWorks(0.5, 0.25, 2800);
+
+    // Side bursts - BIGGER
     setTimeout(() => {
       confetti({
-        particleCount: 100,
+        particleCount: 120,
         angle: 60,
         spread: 100,
         origin: { x: 0, y: 0.6 },
         startVelocity: 55,
         colors: colors,
-        zIndex: 9999
+        zIndex: 9999,
+        scalar: 2.0, // BIGGER
+        shapes: ['circle', 'square']
       });
       confetti({
-        particleCount: 100,
+        particleCount: 120,
         angle: 120,
         spread: 100,
         origin: { x: 1, y: 0.6 },
         startVelocity: 55,
         colors: colors,
-        zIndex: 9999
+        zIndex: 9999,
+        scalar: 2.0, // BIGGER
+        shapes: ['circle', 'square']
       });
     }, 200);
 
-    // Continuous rain effect
+    // Continuous rain effect - BIGGER confetti
     const interval = setInterval(() => {
       const timeLeft = animationEnd - Date.now();
 
@@ -89,7 +125,7 @@ export default function TeacherCleanEvent() {
         return clearInterval(interval);
       }
 
-      const particleCount = 80 * (timeLeft / duration); // Increased from 50
+      const particleCount = 80 * (timeLeft / duration);
 
       // Multiple launch points for fuller effect
       confetti({
@@ -101,7 +137,7 @@ export default function TeacherCleanEvent() {
         zIndex: 9999,
         colors: colors,
         shapes: ['circle', 'square'],
-        scalar: randomInRange(0.8, 1.2)
+        scalar: randomInRange(1.5, 2.5) // BIGGER (was 0.8-1.2)
       });
       
       confetti({
@@ -113,7 +149,7 @@ export default function TeacherCleanEvent() {
         zIndex: 9999,
         colors: colors,
         shapes: ['circle', 'square'],
-        scalar: randomInRange(0.8, 1.2)
+        scalar: randomInRange(1.5, 2.5) // BIGGER
       });
       
       confetti({
@@ -125,22 +161,30 @@ export default function TeacherCleanEvent() {
         zIndex: 9999,
         colors: colors,
         shapes: ['circle', 'square'],
-        scalar: randomInRange(0.8, 1.2)
+        scalar: randomInRange(1.5, 2.5) // BIGGER
       });
-    }, 200); // Faster interval from 250ms to 200ms
+    }, 200);
 
-    // Final burst at the end
+    // Final grand fireworks finale
     setTimeout(() => {
+      // Triple fireworks burst
+      fireWorks(0.3, 0.3, 0);
+      fireWorks(0.5, 0.2, 100);
+      fireWorks(0.7, 0.3, 200);
+      
+      // Final confetti shower
       confetti({
-        particleCount: 150,
+        particleCount: 200,
         spread: 360,
         origin: { x: 0.5, y: 0.4 },
         startVelocity: 70,
         ticks: 120,
         zIndex: 9999,
-        colors: colors
+        colors: colors,
+        scalar: 2.5, // BIGGER
+        shapes: ['circle', 'square']
       });
-    }, duration - 500);
+    }, duration - 800);
   };
 
   useEffect(() => {
