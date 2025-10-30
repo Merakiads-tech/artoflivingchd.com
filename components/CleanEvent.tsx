@@ -99,31 +99,31 @@ export default function CleanEvent() {
             <h2 className="text-3xl font-serif text-[#2c3e50] tracking-wider font-bold drop-shadow-md mb-6">Sri Sri Ravi Shankar Ji</h2>
             
             {/* Date Badge */}
-            <div className="inline-block bg-[#1a3a52] text-white rounded-2xl px-6 py-3 w-fit mb-8">
+            <div className="inline-block bg-[#1a3a52] text-white rounded-2xl px-6 py-3 w-fit mb-4">
               <p className="text-2xl font-bold">
                 22<sup className="text-sm">nd</sup> NOV 2025
               </p>
               <p className="text-xs tracking-widest mt-1">CHANDIGARH</p>
             </div>
 
-            {/* Venue & Timing Combined */}
-            <div className="bg-white rounded-2xl p-5 shadow-lg mb-4">
-              <div className="flex items-center gap-3 mb-3">
+            {/* Venue & Timing Combined - Horizontal Layout */}
+            <div className="bg-white rounded-2xl p-4 shadow-lg mb-4">
+              <div className="flex items-center gap-2 mb-3">
                 <div className="w-8 h-8 bg-[#d4af37] rounded-full flex items-center justify-center">
                   <Clock className="w-4 h-4 text-white" />
                 </div>
-                <h4 className="text-lg font-bold text-[#2c3e50]">Event Details</h4>
+                <h4 className="text-base font-bold text-[#2c3e50]">Event Details</h4>
               </div>
-              <div className="space-y-2">
+              <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <p className="text-sm text-gray-500">When</p>
-                  <p className="text-base text-gray-700 font-semibold">Saturday, 22nd Nov 2025</p>
-                  <p className="text-base text-gray-700">5:00 PM - 8:00 PM</p>
+                  <p className="text-xs text-gray-500 mb-1">When</p>
+                  <p className="text-sm text-gray-700 font-semibold">Saturday, 22nd Nov 2025</p>
+                  <p className="text-sm text-gray-700">5:00 PM - 8:00 PM</p>
                 </div>
-                <div className="pt-2 border-t border-gray-200">
-                  <p className="text-sm text-gray-500">Where</p>
-                  <p className="text-base text-gray-700 font-semibold">Palm Resort</p>
-                  <p className="text-sm text-gray-600">Zirakpur-Ambala Road, Chandigarh</p>
+                <div>
+                  <p className="text-xs text-gray-500 mb-1">Where</p>
+                  <p className="text-sm text-gray-700 font-semibold">Palm Resort</p>
+                  <p className="text-xs text-gray-600">Zirakpur-Ambala Road, Chandigarh</p>
                 </div>
               </div>
             </div>
