@@ -37,16 +37,51 @@ export default function TeacherCleanEvent() {
   const [hasTriggeredConfetti, setHasTriggeredConfetti] = useState(false);
   const previousTimeRef = useRef<TimeRemaining | null>(null);
 
-  // Confetti animation function
+  // Enhanced confetti animation function
   const triggerConfetti = () => {
-    const duration = 3000;
+    const duration = 5000; // Increased from 3000ms to 5000ms
     const animationEnd = Date.now() + duration;
-    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999 };
+    const colors = ['#d4af37', '#c9a961', '#d4a5a5', '#2c3e50', '#ffffff', '#ffd700', '#ff69b4', '#87ceeb'];
 
     const randomInRange = (min: number, max: number) => {
       return Math.random() * (max - min) + min;
     };
 
+    // Initial burst - big explosion
+    const burstCount = 200;
+    confetti({
+      particleCount: burstCount,
+      spread: 180,
+      origin: { x: 0.5, y: 0.5 },
+      startVelocity: 60,
+      ticks: 100,
+      zIndex: 9999,
+      colors: colors
+    });
+
+    // Side bursts
+    setTimeout(() => {
+      confetti({
+        particleCount: 100,
+        angle: 60,
+        spread: 100,
+        origin: { x: 0, y: 0.6 },
+        startVelocity: 55,
+        colors: colors,
+        zIndex: 9999
+      });
+      confetti({
+        particleCount: 100,
+        angle: 120,
+        spread: 100,
+        origin: { x: 1, y: 0.6 },
+        startVelocity: 55,
+        colors: colors,
+        zIndex: 9999
+      });
+    }, 200);
+
+    // Continuous rain effect
     const interval = setInterval(() => {
       const timeLeft = animationEnd - Date.now();
 
@@ -54,22 +89,58 @@ export default function TeacherCleanEvent() {
         return clearInterval(interval);
       }
 
-      const particleCount = 50 * (timeLeft / duration);
+      const particleCount = 80 * (timeLeft / duration); // Increased from 50
 
-      // Launch confetti from different positions
+      // Multiple launch points for fuller effect
       confetti({
-        ...defaults,
         particleCount,
+        spread: 70,
         origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
-        colors: ['#d4af37', '#c9a961', '#d4a5a5', '#2c3e50', '#ffffff']
+        startVelocity: 45,
+        ticks: 80,
+        zIndex: 9999,
+        colors: colors,
+        shapes: ['circle', 'square'],
+        scalar: randomInRange(0.8, 1.2)
       });
+      
       confetti({
-        ...defaults,
         particleCount,
-        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
-        colors: ['#d4af37', '#c9a961', '#d4a5a5', '#2c3e50', '#ffffff']
+        spread: 70,
+        origin: { x: randomInRange(0.4, 0.6), y: Math.random() - 0.2 },
+        startVelocity: 45,
+        ticks: 80,
+        zIndex: 9999,
+        colors: colors,
+        shapes: ['circle', 'square'],
+        scalar: randomInRange(0.8, 1.2)
       });
-    }, 250);
+      
+      confetti({
+        particleCount,
+        spread: 70,
+        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+        startVelocity: 45,
+        ticks: 80,
+        zIndex: 9999,
+        colors: colors,
+        shapes: ['circle', 'square'],
+        scalar: randomInRange(0.8, 1.2)
+      });
+    }, 200); // Faster interval from 250ms to 200ms
+
+    // Final burst at the end
+    setTimeout(() => {
+      confetti({
+        particleCount: 150,
+        spread: 360,
+        origin: { x: 0.5, y: 0.4 },
+        startVelocity: 70,
+        ticks: 120,
+        zIndex: 9999,
+        colors: colors
+      });
+    }, duration - 500);
   };
 
   useEffect(() => {
