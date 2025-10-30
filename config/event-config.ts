@@ -20,15 +20,6 @@ export const TEACHER_REGISTRATION_OPEN_DATE = new Date('2025-10-31T09:00:00+05:3
 // EVENT DETAILS (Displayed on Pages)
 // ============================================
 
-// Event Date - Displayed in text format on both pages
-export const EVENT_DATE_TEXT = 'Saturday, 22nd Nov 2025';
-
-// Event Time
-export const EVENT_TIME = '5:00 PM - 8:00 PM';
-
-// Event Date Badge (Short format)
-export const EVENT_DATE_BADGE = '22nd NOV 2025';
-
 // Venue Name
 export const VENUE_NAME = 'Palms Banquet';
 

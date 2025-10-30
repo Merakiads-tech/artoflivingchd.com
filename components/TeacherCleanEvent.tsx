@@ -6,9 +6,6 @@ import confetti from 'canvas-confetti';
 import {
   TEACHER_REGISTRATION_OPEN_DATE,
   TEACHER_REGISTRATION_OPENING_TEXT,
-  EVENT_DATE_TEXT,
-  EVENT_TIME,
-  EVENT_DATE_BADGE,
   VENUE_NAME,
   VENUE_ADDRESS,
   VENUE_MAPS_LINK,
@@ -163,7 +160,7 @@ export default function TeacherCleanEvent() {
             {/* Date Badge */}
             <div className="inline-block bg-[#1a3a52] text-white rounded-2xl px-6 py-3 w-fit mb-4">
               <p className="text-2xl font-bold">
-                {EVENT_DATE_BADGE}
+                22<sup className="text-sm">nd</sup> NOV 2025
               </p>
               <p className="text-xs tracking-widest mt-1">CHANDIGARH</p>
             </div>
@@ -179,8 +176,8 @@ export default function TeacherCleanEvent() {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <p className="text-xs text-gray-500 mb-1">When</p>
-                  <p className="text-sm text-gray-700 font-semibold">{EVENT_DATE_TEXT}</p>
-                  <p className="text-sm text-gray-700">{EVENT_TIME}</p>
+                  <p className="text-sm text-gray-700 font-semibold">Saturday, 22nd Nov 2025</p>
+                  <p className="text-sm text-gray-700">5:00 PM - 8:00 PM</p>
                 </div>
                 <div>
                   <p className="text-xs text-gray-500 mb-1">Where</p>
