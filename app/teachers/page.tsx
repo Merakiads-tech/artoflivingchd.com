@@ -1,15 +1,18 @@
-import TeacherEvent from "@/components/TeacherEvent";
+import TeacherCleanEvent from "@/components/TeacherCleanEvent";
 
 export const metadata = {
   title: "Teacher Registration - Soaking in Bliss",
-  description: "Exclusive Teacher Family Special Registration for Soaking in Bliss with Gurudev Sri Sri Ravi Shankar",
-  robots: "noindex, nofollow", // Prevent search engines from indexing this page
+  description: "Exclusive registration for Art of Living teachers",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function TeachersPage() {
   return (
     <main className="min-h-screen">
-      <TeacherEvent />
+      <TeacherCleanEvent />
     </main>
   );
 }
