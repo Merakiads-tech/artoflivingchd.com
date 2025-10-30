@@ -263,30 +263,30 @@ export default function TeacherCleanEvent() {
 
             {/* Countdown Overlay */}
             {!isRegistrationOpen && timeRemaining && (
-              <div className="absolute inset-0 backdrop-blur-xl bg-gradient-to-br from-[#2c3e50]/90 via-[#34495e]/85 to-[#2c3e50]/90 rounded-2xl flex items-center justify-center z-20 p-3 md:p-6">
-                <div className="text-center w-full max-w-md md:max-w-2xl px-2">
-                  <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-serif text-white font-bold mb-2 md:mb-3 lg:mb-4 drop-shadow-lg leading-tight">
-                    Registration<br className="md:hidden" /> Opening Soon!
+              <div className="absolute inset-0 backdrop-blur-xl bg-gradient-to-br from-[#2c3e50]/90 via-[#34495e]/85 to-[#2c3e50]/90 rounded-2xl flex items-center justify-center z-20 p-2 md:p-4">
+                <div className="text-center w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg px-2">
+                  <h3 className="text-sm sm:text-base md:text-lg font-serif text-white font-bold mb-1.5 sm:mb-2 md:mb-3 drop-shadow-lg leading-tight">
+                    Opening Soon!
                   </h3>
-                  <div className="grid grid-cols-4 gap-1.5 sm:gap-2 md:gap-3 mb-2 md:mb-3 max-w-xs sm:max-w-sm md:max-w-lg mx-auto">
-                    <div className="bg-white/90 backdrop-blur-sm rounded-lg md:rounded-xl p-1.5 sm:p-2 md:p-3 shadow-xl">
-                      <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#d4af37] mb-0.5">{timeRemaining.days}</div>
-                      <div className="text-[0.5rem] sm:text-[0.55rem] md:text-xs text-[#2c3e50] font-semibold tracking-tight">DAYS</div>
+                  <div className="grid grid-cols-4 gap-1 sm:gap-1.5 md:gap-2 mb-1.5 sm:mb-2 md:mb-3 max-w-[280px] sm:max-w-xs md:max-w-sm mx-auto">
+                    <div className="bg-white/90 backdrop-blur-sm rounded-md md:rounded-lg p-1 sm:p-1.5 md:p-2 shadow-xl">
+                      <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-[#d4af37] mb-0.5">{timeRemaining.days}</div>
+                      <div className="text-[0.45rem] sm:text-[0.5rem] md:text-[0.55rem] text-[#2c3e50] font-semibold tracking-tight">DAYS</div>
                     </div>
-                    <div className="bg-white/90 backdrop-blur-sm rounded-lg md:rounded-xl p-1.5 sm:p-2 md:p-3 shadow-xl">
-                      <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#d4af37] mb-0.5">{timeRemaining.hours}</div>
-                      <div className="text-[0.5rem] sm:text-[0.55rem] md:text-xs text-[#2c3e50] font-semibold tracking-tight">HRS</div>
+                    <div className="bg-white/90 backdrop-blur-sm rounded-md md:rounded-lg p-1 sm:p-1.5 md:p-2 shadow-xl">
+                      <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-[#d4af37] mb-0.5">{timeRemaining.hours}</div>
+                      <div className="text-[0.45rem] sm:text-[0.5rem] md:text-[0.55rem] text-[#2c3e50] font-semibold tracking-tight">HRS</div>
                     </div>
-                    <div className="bg-white/90 backdrop-blur-sm rounded-lg md:rounded-xl p-1.5 sm:p-2 md:p-3 shadow-xl">
-                      <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#d4af37] mb-0.5">{timeRemaining.minutes}</div>
-                      <div className="text-[0.5rem] sm:text-[0.55rem] md:text-xs text-[#2c3e50] font-semibold tracking-tight">MINS</div>
+                    <div className="bg-white/90 backdrop-blur-sm rounded-md md:rounded-lg p-1 sm:p-1.5 md:p-2 shadow-xl">
+                      <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-[#d4af37] mb-0.5">{timeRemaining.minutes}</div>
+                      <div className="text-[0.45rem] sm:text-[0.5rem] md:text-[0.55rem] text-[#2c3e50] font-semibold tracking-tight">MINS</div>
                     </div>
-                    <div className="bg-white/90 backdrop-blur-sm rounded-lg md:rounded-xl p-1.5 sm:p-2 md:p-3 shadow-xl">
-                      <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#d4af37] mb-0.5">{timeRemaining.seconds}</div>
-                      <div className="text-[0.5rem] sm:text-[0.55rem] md:text-xs text-[#2c3e50] font-semibold tracking-tight">SECS</div>
+                    <div className="bg-white/90 backdrop-blur-sm rounded-md md:rounded-lg p-1 sm:p-1.5 md:p-2 shadow-xl">
+                      <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-[#d4af37] mb-0.5">{timeRemaining.seconds}</div>
+                      <div className="text-[0.45rem] sm:text-[0.5rem] md:text-[0.55rem] text-[#2c3e50] font-semibold tracking-tight">SECS</div>
                     </div>
                   </div>
-                  <p className="text-[0.65rem] sm:text-xs md:text-sm lg:text-base text-white font-semibold drop-shadow-md">
+                  <p className="text-[0.6rem] sm:text-[0.65rem] md:text-xs lg:text-sm text-white font-semibold drop-shadow-md">
                     October 31, 2025 at 9:00 AM IST
                   </p>
                 </div>
