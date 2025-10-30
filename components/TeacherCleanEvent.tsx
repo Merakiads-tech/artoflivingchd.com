@@ -20,7 +20,7 @@ interface TimeRemaining {
 }
 
 // ⚙️ TEACHER REGISTRATION LAUNCH CONFIGURATION
-const REGISTRATION_OPEN_DATE = new Date('2025-10-30T15:52:00+05:30');
+const REGISTRATION_OPEN_DATE = new Date('2025-10-30T15:59:00+05:30');
 
 const ticketTiers: TicketTier[] = [
   { name: "Teacher Special", price: "₹7,000", bookingLink: "https://www.artofliving.online/donate.php?nca_id=922887", soldOut: false, capacity: 4 },
@@ -118,11 +118,8 @@ export default function TeacherCleanEvent() {
         {/* Teacher Banner */}
         <div className="bg-gradient-to-r from-[#d4af37] to-[#c9a961] text-white rounded-2xl p-4 md:p-6 mb-6 shadow-xl text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-2">Exclusive for Art of Living Teachers</h2>
-          <p className="text-sm md:text-base opacity-90 mb-2">
-            Early bird registration opens before general passes! Secure your spot at a special teacher rate.
-          </p>
           <p className="text-sm md:text-base opacity-95 font-semibold">
-            ⭐ Early registrations secure preferred seating closer to Gurudev
+            Early registrations secure preferred seating closer to Gurudev
           </p>
         </div>
 
@@ -174,7 +171,7 @@ export default function TeacherCleanEvent() {
                 </div>
                 <div>
                   <p className="text-xs text-gray-500 mb-1">Where</p>
-                  <p className="text-sm text-gray-700 font-semibold">Palm Resort</p>
+                  <p className="text-sm text-gray-700 font-semibold">Palms Banquet</p>
                   <p className="text-xs text-gray-600 mb-2">Zirakpur-Ambala Road, Chandigarh</p>
                   <a
                     href="https://www.google.com/maps/place/Palms+Banquet+Zirakpur/@30.623972,76.8226322,17z/data=!4m15!1m8!3m7!1s0x390fead26761ae13:0x981d27f033178578!2sPALMS+BANQUET,+Punjab+140603!3b1!8m2!3d30.6242406!4d76.822!16s%2Fg%2F11n6spmm_w!3m5!1s0x390fead2ed89e489:0x888c03303efadaf3!8m2!3d30.6244916!4d76.8236738!16s%2Fg%2F11b6cq3jgp?entry=ttu&g_ep=EgoyMDI1MTAyNy4wIKXMDSoASAFQAw%3D%3D"

@@ -1,7 +1,7 @@
 "use client";
 
 import { MapPin, Clock, Users, Info, Phone, Mail } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import confetti from 'canvas-confetti';
 
 interface TicketTier {
@@ -21,7 +21,7 @@ interface TimeRemaining {
 
 // ⚙️ REGISTRATION LAUNCH CONFIGURATION
 // const REGISTRATION_OPEN_DATE = new Date('2025-10-31T09:00:00+05:30');
-const REGISTRATION_OPEN_DATE = new Date('2025-10-30T15:59:50+05:30');
+const REGISTRATION_OPEN_DATE = new Date('2025-10-30T15:56:00+05:30');
 
 const ticketTiers: TicketTier[] = [
   { name: "Bronze", price: "₹2,100", bookingLink: "https://www.artofliving.online/donate.php?nca_id=922881", soldOut: false, capacity: 1 },
@@ -44,6 +44,7 @@ export default function CleanEvent() {
   const [timeRemaining, setTimeRemaining] = useState<TimeRemaining | null>(null);
   const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
   const [hasTriggeredConfetti, setHasTriggeredConfetti] = useState(false);
+  const previousTimeRef = useRef<TimeRemaining | null>(null);
 
   // Confetti animation function
   const triggerConfetti = () => {
@@ -87,7 +88,6 @@ export default function CleanEvent() {
       const difference = targetTime - now;
 
       if (difference <= 0) {
-        setIsRegistrationOpen(true);
         return null;
       }
 
@@ -101,6 +101,7 @@ export default function CleanEvent() {
 
     const initial = calculateTimeRemaining();
     setTimeRemaining(initial);
+    previousTimeRef.current = initial;
     
     // Only set registration open, don't trigger confetti on initial load if already expired
     if (initial === null) {
@@ -109,22 +110,26 @@ export default function CleanEvent() {
 
     const interval = setInterval(() => {
       const remaining = calculateTimeRemaining();
-      setTimeRemaining(remaining);
       
-      // Only trigger confetti when countdown actively reaches zero (not on page load)
-      if (remaining === null && timeRemaining !== null && !hasTriggeredConfetti) {
+      // Check if countdown just finished (was not null, now is null)
+      if (remaining === null && previousTimeRef.current !== null && !hasTriggeredConfetti) {
         setIsRegistrationOpen(true);
-        clearInterval(interval);
-        triggerConfetti();
+        setTimeRemaining(null);
         setHasTriggeredConfetti(true);
+        triggerConfetti();
+        clearInterval(interval);
       } else if (remaining === null) {
         setIsRegistrationOpen(true);
+        setTimeRemaining(null);
         clearInterval(interval);
+      } else {
+        setTimeRemaining(remaining);
+        previousTimeRef.current = remaining;
       }
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [hasTriggeredConfetti, timeRemaining]);
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#f5ebe5] flex items-center justify-center p-6">
@@ -177,7 +182,7 @@ export default function CleanEvent() {
                 </div>
                 <div>
                   <p className="text-xs text-gray-500 mb-1">Where</p>
-                  <p className="text-sm text-gray-700 font-semibold">Palm Resort</p>
+                  <p className="text-sm text-gray-700 font-semibold">Palms Banquet</p>
                   <p className="text-xs text-gray-600 mb-2">Zirakpur-Ambala Road, Chandigarh</p>
                   <a
                     href="https://www.google.com/maps/place/Palms+Banquet+Zirakpur/@30.623972,76.8226322,17z/data=!4m15!1m8!3m7!1s0x390fead26761ae13:0x981d27f033178578!2sPALMS+BANQUET,+Punjab+140603!3b1!8m2!3d30.6242406!4d76.822!16s%2Fg%2F11n6spmm_w!3m5!1s0x390fead2ed89e489:0x888c03303efadaf3!8m2!3d30.6244916!4d76.8236738!16s%2Fg%2F11b6cq3jgp?entry=ttu&g_ep=EgoyMDI1MTAyNy4wIKXMDSoASAFQAw%3D%3D"
@@ -290,7 +295,7 @@ export default function CleanEvent() {
                     </div>
                   </div>
                   <p className="text-sm md:text-lg text-white font-semibold drop-shadow-md px-2">
-                    November 2, 2025 at 12:00 PM IST
+                    October 31, 2025 at 1:00 PM IST
                   </p>
                 </div>
               </div>
