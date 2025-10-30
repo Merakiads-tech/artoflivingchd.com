@@ -289,7 +289,7 @@ export default function CleanEvent() {
         <div className="bg-white rounded-2xl p-6 shadow-lg max-w-2xl mx-auto">
           <h3 className="text-xl font-bold text-center text-[#2c3e50] mb-4">Need Help?</h3>
           <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-            {/* <a href="tel:9815540544" className="flex items-center gap-2 text-gray-700 hover:text-[#d4af37] transition-colors"> */}
+            <a href="" className="flex items-center gap-2 text-gray-700 hover:text-[#d4af37] transition-colors">
               <div className="w-10 h-10 bg-[#d4af37] rounded-full flex items-center justify-center">
                 <Phone className="w-5 h-5 text-white" />
               </div>
@@ -298,7 +298,7 @@ export default function CleanEvent() {
                 <p className="text-base font-semibold">+91-90410 98963</p>
                 <p className="text-base font-semibold">+91 90411 26458</p>
               </div>
-            {/* </a> */}
+            </a>
             <div className="hidden md:block w-px h-12 bg-gray-300"></div>
             <a href="mailto:help@artoflivingchd.com" className="flex items-center gap-2 text-gray-700 hover:text-[#d4af37] transition-colors">
               <div className="w-10 h-10 bg-[#d4af37] rounded-full flex items-center justify-center">
