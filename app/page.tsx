@@ -1,9 +1,9 @@
-import CompactEvent from "@/components/CompactEvent";
+import CleanEvent from "@/components/CleanEvent";
 
 export default function Home() {
   return (
     <main className="min-h-screen">
-      <CompactEvent />
+      <CleanEvent />
     </main>
   );
 }
