@@ -23,12 +23,20 @@ const REGISTRATION_OPEN_DATE = new Date('2025-10-30T00:38:00+05:30');
 
 const ticketTiers: TicketTier[] = [
   { name: "Bronze", price: "₹2,100", bookingLink: "https://www.artofliving.online/donate.php?nca_id=922881", soldOut: false, capacity: 1 },
+  { name: "Teacher Special", price: "₹7,000", bookingLink: "https://www.artofliving.online/donate.php?nca_id=922887", soldOut: false, capacity: 4 },
   { name: "Silver", price: "₹11,000", bookingLink: "https://www.artofliving.online/donate.php?nca_id=922871", soldOut: false, capacity: 2 },
-  { name: "Gold", price: "₹7,000", bookingLink: "https://www.artofliving.online/donate.php?nca_id=922867", soldOut: false, capacity: 2 },
+  { name: "Gold", price: "₹51,000", bookingLink: "https://www.artofliving.online/donate.php?nca_id=922867", soldOut: false, capacity: 2 },
   { name: "Diamond", price: "₹1,00,000", bookingLink: "https://www.artofliving.online/donate.php?nca_id=922865", soldOut: false, capacity: 2 },
   { name: "Platinum", price: "₹2,50,000", bookingLink: "https://www.artofliving.online/donate.php?nca_id=922862", soldOut: false, capacity: 4 },
-  { name: "Teacher Special", price: "₹7,000", bookingLink: "https://www.artofliving.online/donate.php?nca_id=922887", soldOut: false, capacity: 4 },
+  { name: "Emerald", price: "₹11,00,000", bookingLink: "https://www.artofliving.online/donate.php?nca_id=922852", soldOut: false, capacity: 4 },
 ];
+
+// Sort tickets by price (ascending order)
+const sortedTicketTiers = [...ticketTiers].sort((a, b) => {
+  const priceA = parseInt(a.price.replace(/[₹,]/g, ''));
+  const priceB = parseInt(b.price.replace(/[₹,]/g, ''));
+  return priceA - priceB;
+});
 
 export default function CleanEvent() {
   const [timeRemaining, setTimeRemaining] = useState<TimeRemaining | null>(null);
@@ -75,10 +83,10 @@ export default function CleanEvent() {
     <div className="min-h-screen bg-[#f5ebe5] flex items-center justify-center p-6">
       <div className="max-w-6xl w-full mx-auto">
         {/* Top Section with Gurudev and Title */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-6 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-12 mb-6 items-start">
           {/* Left - Gurudev Image */}
-          <div className="flex items-start justify-start">
-            <div className="relative w-full max-w-md">
+          <div className="flex items-start justify-center lg:justify-start">
+            <div className="relative w-3/5 lg:w-full max-w-md">
               <img 
                 src="/g_isolated.png" 
                 alt="Gurudev Sri Sri Ravi Shankar" 
@@ -88,7 +96,7 @@ export default function CleanEvent() {
           </div>
 
           {/* Right - Event Details */}
-          <div className="flex flex-col justify-start pt-8">
+          <div className="flex flex-col justify-start lg:pt-8">
             <h1 className="text-4xl font-serif text-[#2c3e50] mb-1 tracking-wide drop-shadow-md">SOAKING</h1>
             <div className="flex items-center gap-2 mb-1">
               <span className="text-2xl font-serif text-[#2c3e50] drop-shadow-md">IN</span>
@@ -123,7 +131,16 @@ export default function CleanEvent() {
                 <div>
                   <p className="text-xs text-gray-500 mb-1">Where</p>
                   <p className="text-sm text-gray-700 font-semibold">Palm Resort</p>
-                  <p className="text-xs text-gray-600">Zirakpur-Ambala Road, Chandigarh</p>
+                  <p className="text-xs text-gray-600 mb-2">Zirakpur-Ambala Road, Chandigarh</p>
+                  <a
+                    href="https://www.google.com/maps/place/Palms+Banquet+Zirakpur/@30.623972,76.8226322,17z/data=!4m15!1m8!3m7!1s0x390fead26761ae13:0x981d27f033178578!2sPALMS+BANQUET,+Punjab+140603!3b1!8m2!3d30.6242406!4d76.822!16s%2Fg%2F11n6spmm_w!3m5!1s0x390fead2ed89e489:0x888c03303efadaf3!8m2!3d30.6244916!4d76.8236738!16s%2Fg%2F11b6cq3jgp?entry=ttu&g_ep=EgoyMDI1MTAyNy4wIKXMDSoASAFQAw%3D%3D"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-xs text-[#d4af37] hover:text-[#c9a961] font-semibold transition-colors"
+                  >
+                    <MapPin className="w-3 h-3" />
+                    Get Directions
+                  </a>
                 </div>
               </div>
             </div>
@@ -133,10 +150,17 @@ export default function CleanEvent() {
               <div className="flex items-start gap-2">
                 <Info className="w-5 h-5 text-[#d4af37] mt-0.5 flex-shrink-0" />
                 <div>
-                  <h4 className="text-base font-bold text-[#2c3e50] mb-1">Important</h4>
-                  <p className="text-sm text-gray-700 leading-relaxed">
-                    Seating is allocated on a first-come, first-served basis. Early registrations secure preferred seating closer to Gurudev.
-                  </p>
+                  <h4 className="text-base font-bold text-[#2c3e50] mb-2">Important</h4>
+                  <ul className="space-y-1 text-sm text-gray-700">
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#d4af37] mt-1">•</span>
+                      <span>Early registrations secure preferred seating closer to Gurudev.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#d4af37] mt-1">•</span>
+                      <span>Bring valid ID proof for entry.</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -151,34 +175,48 @@ export default function CleanEvent() {
           
           <div className="relative">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3 max-w-4xl mx-auto">
-              {ticketTiers.map((tier, index) => (
+              {sortedTicketTiers.map((tier, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-xl p-3 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 flex flex-col items-center text-center"
+                  className={`bg-white/90 backdrop-blur-sm rounded-xl p-3 shadow-md transition-all duration-300 border border-[#d4af37]/20 ${
+                    tier.soldOut ? 'opacity-60' : 'hover:shadow-lg hover:scale-105'
+                  } relative flex flex-col items-center text-center`}
                 >
-                  <h4 className="text-base font-bold text-[#1a1a1a] mb-1">{tier.name}</h4>
+                  {tier.soldOut && (
+                    <div className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full font-semibold z-10">
+                      Sold Out
+                    </div>
+                  )}
+                  <h4 className="text-base font-bold text-[#2c3e50] mb-1">{tier.name}</h4>
                   {isRegistrationOpen && (
                     <>
                       <p className="text-2xl font-bold text-[#d4af37] mb-0.5">{tier.price}</p>
-                      <p className="text-xs text-gray-600 mb-2">{tier.capacity} {tier.capacity === 1 ? 'person' : 'people'}</p>
+                      <div className="flex items-center justify-center gap-1 mb-2">
+                        <Users className="w-3 h-3 text-[#2c3e50]" />
+                        <p className="text-xs text-gray-600">
+                          {tier.capacity} {tier.capacity === 1 ? 'Person' : 'People'}
+                        </p>
+                      </div>
                     </>
                   )}
                   {tier.soldOut ? (
                     <button
                       disabled
-                      className="w-full bg-gray-400 text-white py-1.5 rounded-full font-bold text-sm cursor-not-allowed"
+                      className="w-full bg-gray-400 text-white py-1.5 rounded-lg text-sm font-semibold cursor-not-allowed mt-auto"
                     >
                       Sold Out
                     </button>
-                  ) : (
+                  ) : isRegistrationOpen ? (
                     <a
                       href={tier.bookingLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full bg-gradient-to-r from-[#d4af37] to-[#c9a961] text-white py-1.5 rounded-full font-bold text-sm hover:shadow-lg transition-all duration-300 hover:scale-105"
+                      className="w-full bg-gradient-to-r from-[#2c3e50] to-[#34495e] text-white py-1.5 rounded-lg text-sm font-semibold hover:from-[#34495e] hover:to-[#2c3e50] transition-all duration-300 mt-auto"
                     >
-                      Secure Your Spot
+                      Buy Pass
                     </a>
+                  ) : (
+                    <div className="w-full py-1.5"></div>
                   )}
                 </div>
               ))}
@@ -186,30 +224,30 @@ export default function CleanEvent() {
 
             {/* Countdown Overlay */}
             {!isRegistrationOpen && timeRemaining && (
-              <div className="absolute inset-0 backdrop-blur-xl bg-white/80 rounded-2xl flex items-center justify-center z-20">
-                <div className="text-center p-6">
-                  <h3 className="text-3xl font-serif text-[#1a1a1a] font-bold mb-6">
+              <div className="absolute inset-0 backdrop-blur-xl bg-gradient-to-br from-[#2c3e50]/80 via-[#34495e]/75 to-[#2c3e50]/80 rounded-2xl flex items-center justify-center z-20">
+                <div className="text-center p-6 max-w-2xl">
+                  <h3 className="text-3xl font-serif text-white font-bold mb-6 drop-shadow-lg">
                     Registrations Opening Soon!
                   </h3>
-                  <div className="grid grid-cols-4 gap-4 mb-4">
-                    <div className="bg-gradient-to-br from-[#d4af37] to-[#c9a961] rounded-2xl p-4 shadow-xl">
-                      <div className="text-4xl font-bold text-white mb-1">{timeRemaining.days}</div>
-                      <div className="text-xs text-white/90 font-semibold tracking-wider">DAYS</div>
+                  <div className="grid grid-cols-4 gap-3 mb-4">
+                    <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 shadow-xl">
+                      <div className="text-3xl font-bold text-[#d4af37] mb-1">{timeRemaining.days}</div>
+                      <div className="text-xs text-[#2c3e50] font-semibold tracking-wider">DAYS</div>
                     </div>
-                    <div className="bg-gradient-to-br from-[#d4af37] to-[#c9a961] rounded-2xl p-4 shadow-xl">
-                      <div className="text-4xl font-bold text-white mb-1">{timeRemaining.hours}</div>
-                      <div className="text-xs text-white/90 font-semibold tracking-wider">HOURS</div>
+                    <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 shadow-xl">
+                      <div className="text-3xl font-bold text-[#d4af37] mb-1">{timeRemaining.hours}</div>
+                      <div className="text-xs text-[#2c3e50] font-semibold tracking-wider">HOURS</div>
                     </div>
-                    <div className="bg-gradient-to-br from-[#d4af37] to-[#c9a961] rounded-2xl p-4 shadow-xl">
-                      <div className="text-4xl font-bold text-white mb-1">{timeRemaining.minutes}</div>
-                      <div className="text-xs text-white/90 font-semibold tracking-wider">MINS</div>
+                    <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 shadow-xl">
+                      <div className="text-3xl font-bold text-[#d4af37] mb-1">{timeRemaining.minutes}</div>
+                      <div className="text-xs text-[#2c3e50] font-semibold tracking-wider">MINUTES</div>
                     </div>
-                    <div className="bg-gradient-to-br from-[#d4af37] to-[#c9a961] rounded-2xl p-4 shadow-xl">
-                      <div className="text-4xl font-bold text-white mb-1">{timeRemaining.seconds}</div>
-                      <div className="text-xs text-white/90 font-semibold tracking-wider">SECS</div>
+                    <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 shadow-xl">
+                      <div className="text-3xl font-bold text-[#d4af37] mb-1">{timeRemaining.seconds}</div>
+                      <div className="text-xs text-[#2c3e50] font-semibold tracking-wider">SECONDS</div>
                     </div>
                   </div>
-                  <p className="text-lg text-[#1a1a1a] font-semibold">
+                  <p className="text-lg text-white font-semibold drop-shadow-md">
                     November 2, 2025 at 12:00 PM IST
                   </p>
                 </div>
