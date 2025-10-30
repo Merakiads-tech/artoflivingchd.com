@@ -117,9 +117,12 @@ export default function TeacherCleanEvent() {
       <div className="max-w-6xl w-full mx-auto">
         {/* Teacher Banner */}
         <div className="bg-gradient-to-r from-[#d4af37] to-[#c9a961] text-white rounded-2xl p-4 md:p-6 mb-6 shadow-xl text-center">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">🎓 Exclusive for Art of Living Teachers</h2>
-          <p className="text-sm md:text-base opacity-90">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Exclusive for Art of Living Teachers</h2>
+          <p className="text-sm md:text-base opacity-90 mb-2">
             Early bird registration opens before general passes! Secure your spot at a special teacher rate.
+          </p>
+          <p className="text-sm md:text-base opacity-95 font-semibold">
+            ⭐ Early registrations secure preferred seating closer to Gurudev
           </p>
         </div>
 
@@ -195,7 +198,7 @@ export default function TeacherCleanEvent() {
                   <ul className="space-y-1 text-sm text-gray-700">
                     <li className="flex items-start gap-2">
                       <span className="text-[#d4af37] mt-1">•</span>
-                      <span>This pass is exclusively for Art of Living teachers.</span>
+                      <span>Early registrations secure preferred seating closer to Gurudev.</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-[#d4af37] mt-1">•</span>
