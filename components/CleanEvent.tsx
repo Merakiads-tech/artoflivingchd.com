@@ -19,11 +19,11 @@ interface TimeRemaining {
 }
 
 // ⚙️ REGISTRATION LAUNCH CONFIGURATION
-const REGISTRATION_OPEN_DATE = new Date('2025-10-30T00:38:00+05:30');
+const REGISTRATION_OPEN_DATE = new Date('2025-10-30T14:58:30+05:30');
 
 const ticketTiers: TicketTier[] = [
   { name: "Bronze", price: "₹2,100", bookingLink: "https://www.artofliving.online/donate.php?nca_id=922881", soldOut: false, capacity: 1 },
-  { name: "Teacher Special", price: "₹7,000", bookingLink: "https://www.artofliving.online/donate.php?nca_id=922887", soldOut: false, capacity: 4 },
+  { name: "Teacher Special", price: "₹7,000", bookingLink: "https://www.artofliving.online/donate.php?nca_id=922887", soldOut: true, capacity: 4 },
   { name: "Silver", price: "₹11,000", bookingLink: "https://www.artofliving.online/donate.php?nca_id=922871", soldOut: false, capacity: 2 },
   { name: "Gold", price: "₹51,000", bookingLink: "https://www.artofliving.online/donate.php?nca_id=922867", soldOut: false, capacity: 2 },
   { name: "Diamond", price: "₹1,00,000", bookingLink: "https://www.artofliving.online/donate.php?nca_id=922865", soldOut: false, capacity: 2 },
@@ -219,30 +219,30 @@ export default function CleanEvent() {
 
             {/* Countdown Overlay */}
             {!isRegistrationOpen && timeRemaining && (
-              <div className="absolute inset-0 backdrop-blur-xl bg-gradient-to-br from-[#2c3e50]/80 via-[#34495e]/75 to-[#2c3e50]/80 rounded-2xl flex items-center justify-center z-20">
-                <div className="text-center p-6 max-w-2xl">
-                  <h3 className="text-3xl font-serif text-white font-bold mb-6 drop-shadow-lg">
+              <div className="absolute inset-0 backdrop-blur-xl bg-gradient-to-br from-[#2c3e50]/80 via-[#34495e]/75 to-[#2c3e50]/80 rounded-2xl flex items-center justify-center z-20 p-4">
+                <div className="text-center w-full max-w-2xl">
+                  <h3 className="text-2xl md:text-3xl font-serif text-white font-bold mb-4 md:mb-6 drop-shadow-lg px-2">
                     Registrations Opening Soon!
                   </h3>
-                  <div className="grid grid-cols-4 gap-3 mb-4">
-                    <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 shadow-xl">
-                      <div className="text-3xl font-bold text-[#d4af37] mb-1">{timeRemaining.days}</div>
-                      <div className="text-xs text-[#2c3e50] font-semibold tracking-wider">DAYS</div>
+                  <div className="grid grid-cols-4 gap-2 md:gap-3 mb-3 md:mb-4">
+                    <div className="bg-white/90 backdrop-blur-sm rounded-lg md:rounded-xl p-2 md:p-3 shadow-xl">
+                      <div className="text-2xl md:text-3xl font-bold text-[#d4af37] mb-0.5 md:mb-1">{timeRemaining.days}</div>
+                      <div className="text-[0.6rem] md:text-xs text-[#2c3e50] font-semibold tracking-tight md:tracking-wider">DAYS</div>
                     </div>
-                    <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 shadow-xl">
-                      <div className="text-3xl font-bold text-[#d4af37] mb-1">{timeRemaining.hours}</div>
-                      <div className="text-xs text-[#2c3e50] font-semibold tracking-wider">HOURS</div>
+                    <div className="bg-white/90 backdrop-blur-sm rounded-lg md:rounded-xl p-2 md:p-3 shadow-xl">
+                      <div className="text-2xl md:text-3xl font-bold text-[#d4af37] mb-0.5 md:mb-1">{timeRemaining.hours}</div>
+                      <div className="text-[0.6rem] md:text-xs text-[#2c3e50] font-semibold tracking-tight md:tracking-wider">HOURS</div>
                     </div>
-                    <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 shadow-xl">
-                      <div className="text-3xl font-bold text-[#d4af37] mb-1">{timeRemaining.minutes}</div>
-                      <div className="text-xs text-[#2c3e50] font-semibold tracking-wider">MINUTES</div>
+                    <div className="bg-white/90 backdrop-blur-sm rounded-lg md:rounded-xl p-2 md:p-3 shadow-xl">
+                      <div className="text-2xl md:text-3xl font-bold text-[#d4af37] mb-0.5 md:mb-1">{timeRemaining.minutes}</div>
+                      <div className="text-[0.6rem] md:text-xs text-[#2c3e50] font-semibold tracking-tight md:tracking-wider">MINUTES</div>
                     </div>
-                    <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 shadow-xl">
-                      <div className="text-3xl font-bold text-[#d4af37] mb-1">{timeRemaining.seconds}</div>
-                      <div className="text-xs text-[#2c3e50] font-semibold tracking-wider">SECONDS</div>
+                    <div className="bg-white/90 backdrop-blur-sm rounded-lg md:rounded-xl p-2 md:p-3 shadow-xl">
+                      <div className="text-2xl md:text-3xl font-bold text-[#d4af37] mb-0.5 md:mb-1">{timeRemaining.seconds}</div>
+                      <div className="text-[0.6rem] md:text-xs text-[#2c3e50] font-semibold tracking-tight md:tracking-wider">SECONDS</div>
                     </div>
                   </div>
-                  <p className="text-lg text-white font-semibold drop-shadow-md">
+                  <p className="text-sm md:text-lg text-white font-semibold drop-shadow-md px-2">
                     November 2, 2025 at 12:00 PM IST
                   </p>
                 </div>
