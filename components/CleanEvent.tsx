@@ -122,7 +122,7 @@ export default function CleanEvent() {
           <div className="flex items-start justify-center lg:justify-start">
             <div className="relative w-3/5 lg:w-full max-w-md">
               <img 
-                src="/g_isolated.png" 
+                src="/g_isolated-min.png" 
                 alt="Gurudev Sri Sri Ravi Shankar" 
                 className="w-full h-auto object-contain"
               />
