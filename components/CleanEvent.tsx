@@ -101,29 +101,30 @@ export default function CleanEvent() {
 
     const initial = calculateTimeRemaining();
     setTimeRemaining(initial);
+    
+    // Only set registration open, don't trigger confetti on initial load if already expired
     if (initial === null) {
       setIsRegistrationOpen(true);
-      if (!hasTriggeredConfetti) {
-        triggerConfetti();
-        setHasTriggeredConfetti(true);
-      }
     }
 
     const interval = setInterval(() => {
       const remaining = calculateTimeRemaining();
       setTimeRemaining(remaining);
-      if (remaining === null) {
+      
+      // Only trigger confetti when countdown actively reaches zero (not on page load)
+      if (remaining === null && timeRemaining !== null && !hasTriggeredConfetti) {
         setIsRegistrationOpen(true);
         clearInterval(interval);
-        if (!hasTriggeredConfetti) {
-          triggerConfetti();
-          setHasTriggeredConfetti(true);
-        }
+        triggerConfetti();
+        setHasTriggeredConfetti(true);
+      } else if (remaining === null) {
+        setIsRegistrationOpen(true);
+        clearInterval(interval);
       }
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [hasTriggeredConfetti]);
+  }, [hasTriggeredConfetti, timeRemaining]);
 
   return (
     <div className="min-h-screen bg-[#f5ebe5] flex items-center justify-center p-6">
