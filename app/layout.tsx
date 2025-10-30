@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   title: "Soaking in Bliss with Gurudev | 22nd Nov 2025 | Chandigarh",
   description: "Join us for an evening of meditation, music and wisdom with Gurudev Sri Sri Ravi Shankar at Chandigarh on 22nd November 2025. Book your tickets now!",
   icons: {
-    icon: '/main.ico',
+    icon: 'https://www.artofliving.org/sites/all/themes/aol-zen/images/favicon.ico',
   },
 };
 
