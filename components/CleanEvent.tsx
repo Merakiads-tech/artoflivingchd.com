@@ -73,14 +73,14 @@ export default function CleanEvent() {
 
   return (
     <div className="min-h-screen bg-[#f5ebe5] flex items-center justify-center p-6">
-      <div className="max-w-7xl w-full">
+      <div className="max-w-5xl w-full mx-auto">
         {/* Top Section with Gurudev and Title */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8 items-center">
           {/* Left - Gurudev Image */}
-          <div className="flex items-start justify-start">
-            <div className="relative w-full max-w-sm">
+          <div className="flex items-start justify-center lg:justify-start">
+            <div className="relative w-full max-w-xs">
               <img 
-                src="/g_isolated.webp" 
+                src="/g_isolated.png" 
                 alt="Gurudev Sri Sri Ravi Shankar" 
                 className="w-full h-auto object-contain"
               />
@@ -88,9 +88,9 @@ export default function CleanEvent() {
           </div>
 
           {/* Right - Event Details */}
-          <div className="flex flex-col justify-center">
+          <div className="flex flex-col justify-center text-center lg:text-left">
             {/* Buy Pass Button - Top Right */}
-            <div className="flex justify-end mb-4">
+            <div className="flex justify-center lg:justify-end mb-4">
               <a
                 href="#tickets"
                 className="bg-gradient-to-r from-[#d4af37] to-[#c9a961] text-white px-6 py-2.5 rounded-full font-bold text-base shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
@@ -99,16 +99,17 @@ export default function CleanEvent() {
               </a>
             </div>
             
-            <h1 className="text-4xl font-serif text-[#1a1a1a] mb-1 tracking-tight">
-              SOAKING IN BLISS
-            </h1>
-            <p className="text-lg text-[#1a1a1a] mb-2">WITH</p>
-            <h2 className="text-2xl font-serif text-[#1a1a1a] font-bold mb-6">
-              Gurudev Sri Sri<br/>Ravi Shankar Ji
-            </h2>
+            <h1 className="text-4xl font-serif text-[#2c3e50] mb-1 tracking-wide drop-shadow-md">SOAKING</h1>
+            <div className="flex items-center justify-center lg:justify-start gap-2 mb-1">
+              <span className="text-2xl font-serif text-[#2c3e50] drop-shadow-md">IN</span>
+              <span className="text-4xl font-script text-[#d4a5a5] italic drop-shadow-md">Bliss</span>
+            </div>
+            <h2 className="text-2xl font-serif text-[#2c3e50] tracking-wide drop-shadow-md">WITH</h2>
+            <h2 className="text-3xl font-serif text-[#2c3e50] tracking-wider font-bold drop-shadow-md">Gurudev</h2>
+            <h2 className="text-3xl font-serif text-[#2c3e50] tracking-wider font-bold drop-shadow-md mb-6">Sri Sri Ravi Shankar Ji</h2>
             
             {/* Date Badge */}
-            <div className="inline-block bg-[#1a3a52] text-white rounded-2xl px-6 py-3 w-fit">
+            <div className="inline-block bg-[#1a3a52] text-white rounded-2xl px-6 py-3 w-fit mx-auto lg:mx-0">
               <p className="text-2xl font-bold">
                 22<sup className="text-sm">nd</sup> NOV 2025
               </p>
@@ -119,16 +120,16 @@ export default function CleanEvent() {
 
         {/* Tickets Section */}
         <div id="tickets" className="mb-8">
-          <h3 className="text-2xl font-bold text-center text-[#1a1a1a] mb-6">
+          <h3 className="text-2xl font-bold text-center text-[#2c3e50] mb-6 drop-shadow-md">
             Choose Your Path to Bliss
           </h3>
           
-          <div className="relative">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="relative max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {ticketTiers.map((tier, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-2xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex flex-col items-center text-center"
+                  className="bg-white rounded-2xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex flex-col items-center text-center max-w-xs mx-auto w-full"
                 >
                   <h4 className="text-xl font-bold text-[#1a1a1a] mb-2">{tier.name}</h4>
                   {isRegistrationOpen && (
@@ -193,14 +194,14 @@ export default function CleanEvent() {
         </div>
 
         {/* Bottom Info Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
           {/* Event Timing */}
           <div className="bg-white rounded-2xl p-5 shadow-lg">
             <div className="flex items-center gap-3 mb-2">
               <div className="w-8 h-8 bg-[#d4af37] rounded-full flex items-center justify-center">
                 <Clock className="w-4 h-4 text-white" />
               </div>
-              <h4 className="text-lg font-bold text-[#1a1a1a]">Event Timing</h4>
+              <h4 className="text-lg font-bold text-[#2c3e50]">Event Timing</h4>
             </div>
             <p className="text-base text-gray-700 ml-11">5:00 PM - 8:00 PM</p>
             <p className="text-sm text-gray-600 ml-11">Saturday, 22nd Nov 2025</p>
@@ -212,7 +213,7 @@ export default function CleanEvent() {
               <div className="w-8 h-8 bg-[#d4af37] rounded-full flex items-center justify-center">
                 <MapPin className="w-4 h-4 text-white" />
               </div>
-              <h4 className="text-lg font-bold text-[#1a1a1a]">Venue</h4>
+              <h4 className="text-lg font-bold text-[#2c3e50]">Venue</h4>
             </div>
             <p className="text-base text-gray-700 ml-11 font-semibold">Palm Resort</p>
             <p className="text-sm text-gray-600 ml-11">Zirakpur-Ambala Road,<br/>Chandigarh</p>
