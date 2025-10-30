@@ -295,7 +295,8 @@ export default function CleanEvent() {
               </div>
               <div>
                 <p className="text-xs text-gray-500">Call Us</p>
-                <p className="text-base font-semibold">+91-8054913006</p>
+                <p className="text-base font-semibold">+91-90410 98963</p>
+                <p className="text-base font-semibold">+91 90411 26458</p>
               </div>
             </a>
             <div className="hidden md:block w-px h-12 bg-gray-300"></div>

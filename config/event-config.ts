@@ -24,7 +24,7 @@ export const TEACHER_REGISTRATION_OPEN_DATE = new Date('2025-10-31T09:00:00+05:3
 export const VENUE_NAME = 'Palms Banquet';
 
 // Venue Address
-export const VENUE_ADDRESS = 'Zirakpur-Ambala Road, Chandigarh';
+export const VENUE_ADDRESS = 'Zirakpur-Ambala Road, Zirakpur, Punjab';
 
 // Google Maps Link
 export const VENUE_MAPS_LINK = 'https://www.google.com/maps/place/Palms+Banquet+Zirakpur/@30.623972,76.8226322,17z/data=!4m15!1m8!3m7!1s0x390fead26761ae13:0x981d27f033178578!2sPALMS+BANQUET,+Punjab+140603!3b1!8m2!3d30.6242406!4d76.822!16s%2Fg%2F11n6spmm_w!3m5!1s0x390fead2ed89e489:0x888c03303efadaf3!8m2!3d30.6244916!4d76.8236738!16s%2Fg%2F11b6cq3jgp?entry=ttu&g_ep=EgoyMDI1MTAyNy4wIKXMDSoASAFQAw%3D%3D';
