@@ -10,7 +10,8 @@
 
 // Main Page Registration Opening Date & Time
 // Format: 'YYYY-MM-DDTHH:mm:ss+05:30' (IST timezone)
-export const MAIN_REGISTRATION_OPEN_DATE = new Date('2025-10-31T13:00:00+05:30');
+// export const MAIN_REGISTRATION_OPEN_DATE = new Date('2025-10-31T13:00:00+05:30');
+export const MAIN_REGISTRATION_OPEN_DATE = new Date('2025-10-30T16:09:30+05:30');
 
 // Teachers Page Registration Opening Date & Time
 // Format: 'YYYY-MM-DDTHH:mm:ss+05:30' (IST timezone)
@@ -62,7 +63,7 @@ export const MAIN_PAGE_TICKETS: TicketConfig[] = [
     name: "Teacher Special",
     price: "₹7,000",
     bookingLink: "https://www.artofliving.online/donate.php?nca_id=922887",
-    soldOut: true,        // Currently marked as sold out
+    soldOut: false,        // Currently marked as sold out
     enabled: true,
     capacity: 4
   },
