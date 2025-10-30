@@ -263,7 +263,7 @@ export default function TeacherCleanEvent() {
 
             {/* Countdown Overlay */}
             {!isRegistrationOpen && timeRemaining && (
-              <div className="absolute inset-0 backdrop-blur-xl bg-gradient-to-br from-[#2c3e50]/90 via-[#34495e]/85 to-[#2c3e50]/90 rounded-2xl flex items-center justify-center z-20 p-4 md:p-6">
+              <div className="absolute inset-0 backdrop-blur-xl bg-gradient-to-br from-[#2c3e50]/90 via-[#34495e]/85 to-[#2c3e50]/90 rounded-2xl flex items-center justify-center z-20 p-6 md:p-8">
                 <div className="grid grid-cols-4 gap-2 md:gap-3 w-full max-w-md">
                   <div className="bg-white/90 backdrop-blur-sm rounded-lg md:rounded-xl p-3 md:p-4 shadow-xl">
                     <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#d4af37] mb-1">{timeRemaining.days}</div>

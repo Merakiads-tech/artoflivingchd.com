@@ -21,7 +21,7 @@ interface TimeRemaining {
 
 // ⚙️ REGISTRATION LAUNCH CONFIGURATION
 // const REGISTRATION_OPEN_DATE = new Date('2025-10-31T09:00:00+05:30');
-const REGISTRATION_OPEN_DATE = new Date('2025-10-30T15:09:50+05:30');
+const REGISTRATION_OPEN_DATE = new Date('2025-10-30T15:59:50+05:30');
 
 const ticketTiers: TicketTier[] = [
   { name: "Bronze", price: "₹2,100", bookingLink: "https://www.artofliving.online/donate.php?nca_id=922881", soldOut: false, capacity: 1 },
