@@ -237,7 +237,7 @@ export default function CleanEvent() {
           <div className="flex items-start justify-center lg:justify-start">
             <div className="relative w-3/5 lg:w-full max-w-md">
               <img 
-                src="/g_isolated.png" 
+                src="/g_isolated-min.png" 
                 alt="Gurudev Sri Sri Ravi Shankar" 
                 className="w-full h-auto object-contain"
               />
@@ -404,7 +404,7 @@ export default function CleanEvent() {
         <div className="bg-white rounded-2xl p-6 shadow-lg max-w-2xl mx-auto">
           <h3 className="text-xl font-bold text-center text-[#2c3e50] mb-4">Need Help?</h3>
           <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-            <a href="tel:9815540544" className="flex items-center gap-2 text-gray-700 hover:text-[#d4af37] transition-colors">
+            <a href="" className="flex items-center gap-2 text-gray-700 hover:text-[#d4af37] transition-colors">
               <div className="w-10 h-10 bg-[#d4af37] rounded-full flex items-center justify-center">
                 <Phone className="w-5 h-5 text-white" />
               </div>
