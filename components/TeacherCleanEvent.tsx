@@ -1,8 +1,27 @@
 "use client";
 
 import { MapPin, Clock, Users, Info, Phone, Mail } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import confetti from 'canvas-confetti';
+import {
+  TEACHER_REGISTRATION_OPEN_DATE,
+  TEACHER_REGISTRATION_OPENING_TEXT,
+  EVENT_DATE_TEXT,
+  EVENT_TIME,
+  EVENT_DATE_BADGE,
+  VENUE_NAME,
+  VENUE_ADDRESS,
+  VENUE_MAPS_LINK,
+  TEACHER_PAGE_TICKET,
+  isTeacherTicketEnabled
+} from '@/config/event-config';
+
+interface TimeRemaining {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+}
 
 interface TicketTier {
   name: string;
@@ -12,24 +31,14 @@ interface TicketTier {
   capacity: number;
 }
 
-interface TimeRemaining {
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
-}
-
-// ⚙️ TEACHER REGISTRATION LAUNCH CONFIGURATION
-const REGISTRATION_OPEN_DATE = new Date('2025-10-30T15:59:00+05:30');
-
-const ticketTiers: TicketTier[] = [
-  { name: "Teacher Special", price: "₹7,000", bookingLink: "https://www.artofliving.online/donate.php?nca_id=922887", soldOut: false, capacity: 4 },
-];
+// Get teacher ticket from config (as array for mapping)
+const ticketTiers: TicketTier[] = isTeacherTicketEnabled() ? [TEACHER_PAGE_TICKET] : [];
 
 export default function TeacherCleanEvent() {
   const [timeRemaining, setTimeRemaining] = useState<TimeRemaining | null>(null);
   const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
   const [hasTriggeredConfetti, setHasTriggeredConfetti] = useState(false);
+  const previousTimeRef = useRef<TimeRemaining | null>(null);
 
   // Confetti animation function
   const triggerConfetti = () => {
@@ -69,11 +78,10 @@ export default function TeacherCleanEvent() {
   useEffect(() => {
     const calculateTimeRemaining = () => {
       const now = new Date().getTime();
-      const targetTime = REGISTRATION_OPEN_DATE.getTime();
+      const targetTime = TEACHER_REGISTRATION_OPEN_DATE.getTime();
       const difference = targetTime - now;
 
       if (difference <= 0) {
-        setIsRegistrationOpen(true);
         return null;
       }
 
@@ -87,6 +95,7 @@ export default function TeacherCleanEvent() {
 
     const initial = calculateTimeRemaining();
     setTimeRemaining(initial);
+    previousTimeRef.current = initial;
     
     // Only set registration open, don't trigger confetti on initial load if already expired
     if (initial === null) {
@@ -95,22 +104,26 @@ export default function TeacherCleanEvent() {
 
     const interval = setInterval(() => {
       const remaining = calculateTimeRemaining();
-      setTimeRemaining(remaining);
       
-      // Only trigger confetti when countdown actively reaches zero (not on page load)
-      if (remaining === null && timeRemaining !== null && !hasTriggeredConfetti) {
+      // Check if countdown just finished (was not null, now is null)
+      if (remaining === null && previousTimeRef.current !== null && !hasTriggeredConfetti) {
         setIsRegistrationOpen(true);
-        clearInterval(interval);
-        triggerConfetti();
+        setTimeRemaining(null);
         setHasTriggeredConfetti(true);
+        triggerConfetti();
+        clearInterval(interval);
       } else if (remaining === null) {
         setIsRegistrationOpen(true);
+        setTimeRemaining(null);
         clearInterval(interval);
+      } else {
+        setTimeRemaining(remaining);
+        previousTimeRef.current = remaining;
       }
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [hasTriggeredConfetti, timeRemaining]);
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#f5ebe5] flex items-center justify-center p-6">
@@ -150,7 +163,7 @@ export default function TeacherCleanEvent() {
             {/* Date Badge */}
             <div className="inline-block bg-[#1a3a52] text-white rounded-2xl px-6 py-3 w-fit mb-4">
               <p className="text-2xl font-bold">
-                22<sup className="text-sm">nd</sup> NOV 2025
+                {EVENT_DATE_BADGE}
               </p>
               <p className="text-xs tracking-widest mt-1">CHANDIGARH</p>
             </div>
@@ -166,15 +179,15 @@ export default function TeacherCleanEvent() {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <p className="text-xs text-gray-500 mb-1">When</p>
-                  <p className="text-sm text-gray-700 font-semibold">Saturday, 22nd Nov 2025</p>
-                  <p className="text-sm text-gray-700">5:00 PM - 8:00 PM</p>
+                  <p className="text-sm text-gray-700 font-semibold">{EVENT_DATE_TEXT}</p>
+                  <p className="text-sm text-gray-700">{EVENT_TIME}</p>
                 </div>
                 <div>
                   <p className="text-xs text-gray-500 mb-1">Where</p>
-                  <p className="text-sm text-gray-700 font-semibold">Palms Banquet</p>
-                  <p className="text-xs text-gray-600 mb-2">Zirakpur-Ambala Road, Chandigarh</p>
+                  <p className="text-sm text-gray-700 font-semibold">{VENUE_NAME}</p>
+                  <p className="text-xs text-gray-600 mb-2">{VENUE_ADDRESS}</p>
                   <a
-                    href="https://www.google.com/maps/place/Palms+Banquet+Zirakpur/@30.623972,76.8226322,17z/data=!4m15!1m8!3m7!1s0x390fead26761ae13:0x981d27f033178578!2sPALMS+BANQUET,+Punjab+140603!3b1!8m2!3d30.6242406!4d76.822!16s%2Fg%2F11n6spmm_w!3m5!1s0x390fead2ed89e489:0x888c03303efadaf3!8m2!3d30.6244916!4d76.8236738!16s%2Fg%2F11b6cq3jgp?entry=ttu&g_ep=EgoyMDI1MTAyNy4wIKXMDSoASAFQAw%3D%3D"
+                    href={VENUE_MAPS_LINK}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 text-xs text-[#d4af37] hover:text-[#c9a961] font-semibold transition-colors"
@@ -211,7 +224,7 @@ export default function TeacherCleanEvent() {
         {/* Tickets Section - Single Card Centered */}
         <div id="tickets" className="mb-6">
           <h3 className="text-lg md:text-xl font-bold text-center text-[#2c3e50] mb-4 drop-shadow-md">
-            Teacher Special Pass - Opening October 31, 2025 at 9:00 AM IST
+            Teacher Special Pass - Opening {TEACHER_REGISTRATION_OPENING_TEXT}
           </h3>
           
           <div className="relative">
