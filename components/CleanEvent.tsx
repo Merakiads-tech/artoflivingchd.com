@@ -2,6 +2,7 @@
 
 import { MapPin, Clock, Users, Info, Phone, Mail } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import confetti from 'canvas-confetti';
 
 interface TicketTier {
   name: string;
@@ -19,7 +20,7 @@ interface TimeRemaining {
 }
 
 // ⚙️ REGISTRATION LAUNCH CONFIGURATION
-const REGISTRATION_OPEN_DATE = new Date('2025-10-30T14:58:30+05:30');
+const REGISTRATION_OPEN_DATE = new Date('2025-10-31T09:00:00+05:30');
 
 const ticketTiers: TicketTier[] = [
   { name: "Bronze", price: "₹2,100", bookingLink: "https://www.artofliving.online/donate.php?nca_id=922881", soldOut: false, capacity: 1 },
@@ -41,6 +42,42 @@ const sortedTicketTiers = [...ticketTiers].sort((a, b) => {
 export default function CleanEvent() {
   const [timeRemaining, setTimeRemaining] = useState<TimeRemaining | null>(null);
   const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
+  const [hasTriggeredConfetti, setHasTriggeredConfetti] = useState(false);
+
+  // Confetti animation function
+  const triggerConfetti = () => {
+    const duration = 3000;
+    const animationEnd = Date.now() + duration;
+    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999 };
+
+    const randomInRange = (min: number, max: number) => {
+      return Math.random() * (max - min) + min;
+    };
+
+    const interval = setInterval(() => {
+      const timeLeft = animationEnd - Date.now();
+
+      if (timeLeft <= 0) {
+        return clearInterval(interval);
+      }
+
+      const particleCount = 50 * (timeLeft / duration);
+
+      // Launch confetti from different positions
+      confetti({
+        ...defaults,
+        particleCount,
+        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+        colors: ['#d4af37', '#c9a961', '#d4a5a5', '#2c3e50', '#ffffff']
+      });
+      confetti({
+        ...defaults,
+        particleCount,
+        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+        colors: ['#d4af37', '#c9a961', '#d4a5a5', '#2c3e50', '#ffffff']
+      });
+    }, 250);
+  };
 
   useEffect(() => {
     const calculateTimeRemaining = () => {
@@ -65,6 +102,10 @@ export default function CleanEvent() {
     setTimeRemaining(initial);
     if (initial === null) {
       setIsRegistrationOpen(true);
+      if (!hasTriggeredConfetti) {
+        triggerConfetti();
+        setHasTriggeredConfetti(true);
+      }
     }
 
     const interval = setInterval(() => {
@@ -73,11 +114,15 @@ export default function CleanEvent() {
       if (remaining === null) {
         setIsRegistrationOpen(true);
         clearInterval(interval);
+        if (!hasTriggeredConfetti) {
+          triggerConfetti();
+          setHasTriggeredConfetti(true);
+        }
       }
     }, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [hasTriggeredConfetti]);
 
   return (
     <div className="min-h-screen bg-[#f5ebe5] flex items-center justify-center p-6">
