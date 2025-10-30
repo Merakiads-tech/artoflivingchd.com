@@ -20,7 +20,7 @@ interface TimeRemaining {
 }
 
 // ⚙️ TEACHER REGISTRATION LAUNCH CONFIGURATION
-const REGISTRATION_OPEN_DATE = new Date('2025-10-31T09:00:00+05:30');
+const REGISTRATION_OPEN_DATE = new Date('2025-10-30T15:30:00+05:30');
 
 const ticketTiers: TicketTier[] = [
   { name: "Teacher Special", price: "₹7,000", bookingLink: "https://www.artofliving.online/donate.php?nca_id=922887", soldOut: false, capacity: 4 },
@@ -115,6 +115,14 @@ export default function TeacherCleanEvent() {
   return (
     <div className="min-h-screen bg-[#f5ebe5] flex items-center justify-center p-6">
       <div className="max-w-6xl w-full mx-auto">
+        {/* Teacher Banner */}
+        <div className="bg-gradient-to-r from-[#d4af37] to-[#c9a961] text-white rounded-2xl p-4 md:p-6 mb-6 shadow-xl text-center">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">🎓 Exclusive for Art of Living Teachers</h2>
+          <p className="text-sm md:text-base opacity-90">
+            Early bird registration opens before general passes! Secure your spot at a special teacher rate.
+          </p>
+        </div>
+
         {/* Top Section with Gurudev and Title */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-12 mb-6 items-start">
           {/* Left - Gurudev Image */}
@@ -252,30 +260,30 @@ export default function TeacherCleanEvent() {
 
             {/* Countdown Overlay */}
             {!isRegistrationOpen && timeRemaining && (
-              <div className="absolute inset-0 backdrop-blur-xl bg-gradient-to-br from-[#2c3e50]/80 via-[#34495e]/75 to-[#2c3e50]/80 rounded-2xl flex items-center justify-center z-20 p-4">
+              <div className="absolute inset-0 backdrop-blur-xl bg-gradient-to-br from-[#2c3e50]/90 via-[#34495e]/85 to-[#2c3e50]/90 rounded-2xl flex items-center justify-center z-20 p-4 md:p-6">
                 <div className="text-center w-full max-w-2xl">
-                  <h3 className="text-2xl md:text-3xl font-serif text-white font-bold mb-4 md:mb-6 drop-shadow-lg px-2">
-                    Teacher Registration Opening Soon!
+                  <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-serif text-white font-bold mb-3 md:mb-4 lg:mb-6 drop-shadow-lg px-2 leading-tight">
+                    Teacher Registration<br className="sm:hidden" /> Opening Soon!
                   </h3>
-                  <div className="grid grid-cols-4 gap-2 md:gap-3 mb-3 md:mb-4">
+                  <div className="grid grid-cols-4 gap-2 md:gap-3 mb-3 md:mb-4 max-w-lg mx-auto">
                     <div className="bg-white/90 backdrop-blur-sm rounded-lg md:rounded-xl p-2 md:p-3 shadow-xl">
-                      <div className="text-2xl md:text-3xl font-bold text-[#d4af37] mb-0.5 md:mb-1">{timeRemaining.days}</div>
-                      <div className="text-[0.6rem] md:text-xs text-[#2c3e50] font-semibold tracking-tight md:tracking-wider">DAYS</div>
+                      <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#d4af37] mb-0.5 md:mb-1">{timeRemaining.days}</div>
+                      <div className="text-[0.55rem] sm:text-[0.6rem] md:text-xs text-[#2c3e50] font-semibold tracking-tight md:tracking-wider">DAYS</div>
                     </div>
                     <div className="bg-white/90 backdrop-blur-sm rounded-lg md:rounded-xl p-2 md:p-3 shadow-xl">
-                      <div className="text-2xl md:text-3xl font-bold text-[#d4af37] mb-0.5 md:mb-1">{timeRemaining.hours}</div>
-                      <div className="text-[0.6rem] md:text-xs text-[#2c3e50] font-semibold tracking-tight md:tracking-wider">HOURS</div>
+                      <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#d4af37] mb-0.5 md:mb-1">{timeRemaining.hours}</div>
+                      <div className="text-[0.55rem] sm:text-[0.6rem] md:text-xs text-[#2c3e50] font-semibold tracking-tight md:tracking-wider">HOURS</div>
                     </div>
                     <div className="bg-white/90 backdrop-blur-sm rounded-lg md:rounded-xl p-2 md:p-3 shadow-xl">
-                      <div className="text-2xl md:text-3xl font-bold text-[#d4af37] mb-0.5 md:mb-1">{timeRemaining.minutes}</div>
-                      <div className="text-[0.6rem] md:text-xs text-[#2c3e50] font-semibold tracking-tight md:tracking-wider">MINUTES</div>
+                      <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#d4af37] mb-0.5 md:mb-1">{timeRemaining.minutes}</div>
+                      <div className="text-[0.55rem] sm:text-[0.6rem] md:text-xs text-[#2c3e50] font-semibold tracking-tight md:tracking-wider">MINS</div>
                     </div>
                     <div className="bg-white/90 backdrop-blur-sm rounded-lg md:rounded-xl p-2 md:p-3 shadow-xl">
-                      <div className="text-2xl md:text-3xl font-bold text-[#d4af37] mb-0.5 md:mb-1">{timeRemaining.seconds}</div>
-                      <div className="text-[0.6rem] md:text-xs text-[#2c3e50] font-semibold tracking-tight md:tracking-wider">SECONDS</div>
+                      <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#d4af37] mb-0.5 md:mb-1">{timeRemaining.seconds}</div>
+                      <div className="text-[0.55rem] sm:text-[0.6rem] md:text-xs text-[#2c3e50] font-semibold tracking-tight md:tracking-wider">SECS</div>
                     </div>
                   </div>
-                  <p className="text-sm md:text-lg text-white font-semibold drop-shadow-md px-2">
+                  <p className="text-xs sm:text-sm md:text-base lg:text-lg text-white font-semibold drop-shadow-md px-2">
                     October 31, 2025 at 9:00 AM IST
                   </p>
                 </div>
