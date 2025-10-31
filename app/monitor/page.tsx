@@ -205,7 +205,6 @@ export default function MonitorPage() {
                 <span className="text-sm font-bold bg-gradient-to-r from-purple-300 via-pink-300 to-blue-300 bg-clip-text text-transparent">
                   Meraki Tech Infrastructure
                 </span>
-                <span className="text-xs">✨</span>
               </div>
             </div>
 
