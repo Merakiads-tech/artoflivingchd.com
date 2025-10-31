@@ -324,13 +324,20 @@ export default function CleanEvent() {
           
           <div className="relative">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3 max-w-4xl mx-auto">
-              {sortedTicketTiers.map((tier, index) => (
-                <div
-                  key={index}
-                  className={`bg-white rounded-xl p-3 shadow-md transition-all duration-300 ${
-                    tier.soldOut ? 'opacity-60' : 'hover:shadow-lg hover:scale-105'
-                  } relative flex flex-col items-center text-center`}
-                >
+              {sortedTicketTiers.map((tier, index) => {
+                const isLastCard = index === sortedTicketTiers.length - 1;
+                const isOddTotal = sortedTicketTiers.length % 3 === 1;
+                const shouldCenter = isLastCard && isOddTotal;
+                
+                return (
+                  <div
+                    key={index}
+                    className={`bg-white rounded-xl p-3 shadow-md transition-all duration-300 ${
+                      tier.soldOut ? 'opacity-60' : 'hover:shadow-lg hover:scale-105'
+                    } relative flex flex-col items-center text-center ${
+                      shouldCenter ? 'md:col-start-2 lg:col-start-2' : ''
+                    }`}
+                  >
                   {tier.soldOut && (
                     <div className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full font-semibold z-10">
                       Sold Out
@@ -363,17 +370,18 @@ export default function CleanEvent() {
                     <div className="w-full py-1.5"></div>
                   )}
                 </div>
-              ))}
+                );
+              })}
             </div>
 
             {/* Countdown Overlay */}
             {!isRegistrationOpen && timeRemaining && (
-              <div className="absolute inset-0 backdrop-blur-xl bg-gradient-to-br from-[#2c3e50]/80 via-[#34495e]/75 to-[#2c3e50]/80 rounded-2xl flex items-center justify-center z-20 p-4">
-                <div className="text-center w-full max-w-2xl">
-                  <h3 className="text-2xl md:text-3xl font-serif text-white font-bold mb-4 md:mb-6 drop-shadow-lg px-2">
-                    Registrations Opening Soon!
+              <div className="absolute inset-0 backdrop-blur-xl bg-gradient-to-br from-[#2c3e50]/90 via-[#34495e]/85 to-[#2c3e50]/90 rounded-2xl flex items-center justify-center z-20 p-4 overflow-hidden">
+                <div className="text-center w-full max-w-2xl px-4">
+                  <h3 className="text-lg md:text-xl lg:text-2xl font-serif text-white font-bold mb-3 md:mb-4 drop-shadow-lg leading-tight">
+                   
                   </h3>
-                  <div className="grid grid-cols-4 gap-2 md:gap-3 mb-3 md:mb-4">
+                  <div className="grid grid-cols-4 gap-2 md:gap-3 mb-3 md:mb-4 max-w-lg mx-auto">
                     <div className="bg-white/90 backdrop-blur-sm rounded-lg md:rounded-xl p-2 md:p-3 shadow-xl">
                       <div className="text-2xl md:text-3xl font-bold text-[#d4af37] mb-0.5 md:mb-1">{timeRemaining.days}</div>
                       <div className="text-[0.6rem] md:text-xs text-[#2c3e50] font-semibold tracking-tight md:tracking-wider">DAYS</div>
@@ -384,14 +392,14 @@ export default function CleanEvent() {
                     </div>
                     <div className="bg-white/90 backdrop-blur-sm rounded-lg md:rounded-xl p-2 md:p-3 shadow-xl">
                       <div className="text-2xl md:text-3xl font-bold text-[#d4af37] mb-0.5 md:mb-1">{timeRemaining.minutes}</div>
-                      <div className="text-[0.6rem] md:text-xs text-[#2c3e50] font-semibold tracking-tight md:tracking-wider">MINUTES</div>
+                      <div className="text-[0.6rem] md:text-xs text-[#2c3e50] font-semibold tracking-tight md:tracking-wider">MINS</div>
                     </div>
                     <div className="bg-white/90 backdrop-blur-sm rounded-lg md:rounded-xl p-2 md:p-3 shadow-xl">
                       <div className="text-2xl md:text-3xl font-bold text-[#d4af37] mb-0.5 md:mb-1">{timeRemaining.seconds}</div>
-                      <div className="text-[0.6rem] md:text-xs text-[#2c3e50] font-semibold tracking-tight md:tracking-wider">SECONDS</div>
+                      <div className="text-[0.6rem] md:text-xs text-[#2c3e50] font-semibold tracking-tight md:tracking-wider">SECS</div>
                     </div>
                   </div>
-                  <p className="text-sm md:text-lg text-white font-semibold drop-shadow-md px-2">
+                  <p className="text-xs md:text-sm lg:text-base text-white font-semibold drop-shadow-md leading-tight">
                     {MAIN_REGISTRATION_OPENING_TEXT}
                   </p>
                 </div>

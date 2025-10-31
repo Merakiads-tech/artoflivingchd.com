@@ -332,37 +332,44 @@ export default function TeacherCleanEvent() {
           </div>
         </div>
 
-        {/* Tickets Section - Single Card Centered */}
+        {/* Tickets Section */}
         <div id="tickets" className="mb-6">
-          <h3 className="text-lg md:text-xl font-bold text-center text-[#2c3e50] mb-4 drop-shadow-md">
-            Teacher Special Pass - Opening {TEACHER_REGISTRATION_OPENING_TEXT}
+          <h3 className="text-xl font-bold text-center text-[#2c3e50] mb-4 drop-shadow-md">
+            Choose Your Path to Bliss
           </h3>
           
           <div className="relative">
-            <div className="flex justify-center">
-              {ticketTiers.map((tier, index) => (
-                <div
-                  key={index}
-                  className={`bg-white rounded-xl p-6 shadow-md transition-all duration-300 ${
-                    tier.soldOut ? 'opacity-60' : 'hover:shadow-lg hover:scale-105'
-                  } relative flex flex-col items-center text-center w-full max-w-sm`}
-                >
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3 max-w-4xl mx-auto">
+              {ticketTiers.map((tier, index) => {
+                const isLastCard = index === ticketTiers.length - 1;
+                const isOddTotal = ticketTiers.length % 3 === 1;
+                const shouldCenter = isLastCard && isOddTotal;
+                
+                return (
+                  <div
+                    key={index}
+                    className={`bg-white rounded-xl p-3 shadow-md transition-all duration-300 ${
+                      tier.soldOut ? 'opacity-60' : 'hover:shadow-lg hover:scale-105'
+                    } relative flex flex-col items-center text-center ${
+                      shouldCenter ? 'md:col-start-2 lg:col-start-2' : ''
+                    }`}
+                  >
                   {tier.soldOut && (
                     <div className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full font-semibold z-10">
                       Sold Out
                     </div>
                   )}
-                  <h4 className="text-2xl font-bold text-[#1a1a1a] mb-2">{tier.name}</h4>
+                  <h4 className="text-base font-bold text-[#1a1a1a] mb-1">{tier.name}</h4>
                   {isRegistrationOpen && (
                     <>
-                      <p className="text-4xl font-bold text-[#d4af37] mb-1">{tier.price}</p>
-                      <p className="text-sm text-gray-600 mb-4">{tier.capacity} {tier.capacity === 1 ? 'person' : 'people'}</p>
+                      <p className="text-2xl font-bold text-[#d4af37] mb-0.5">{tier.price}</p>
+                      <p className="text-xs text-gray-600 mb-2">{tier.capacity} {tier.capacity === 1 ? 'person' : 'people'}</p>
                     </>
                   )}
                   {tier.soldOut ? (
                     <button
                       disabled
-                      className="w-full bg-gray-400 text-white py-3 rounded-full text-base font-semibold cursor-not-allowed mt-auto"
+                      className="w-full bg-gray-400 text-white py-1.5 rounded-full text-sm font-semibold cursor-not-allowed mt-auto"
                     >
                       Sold Out
                     </button>
@@ -371,37 +378,46 @@ export default function TeacherCleanEvent() {
                       href={tier.bookingLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full bg-gradient-to-r from-[#d4af37] to-[#c9a961] text-white py-3 rounded-full text-base font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105 mt-auto"
+                      className="w-full bg-gradient-to-r from-[#d4af37] to-[#c9a961] text-white py-1.5 rounded-full text-sm font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105 mt-auto"
                     >
                       Secure Your Spot
                     </a>
                   ) : (
-                    <div className="w-full py-3"></div>
+                    <div className="w-full py-1.5"></div>
                   )}
                 </div>
-              ))}
+                );
+              })}
             </div>
 
             {/* Countdown Overlay */}
             {!isRegistrationOpen && timeRemaining && (
-              <div className="absolute inset-0 backdrop-blur-xl bg-gradient-to-br from-[#2c3e50]/90 via-[#34495e]/85 to-[#2c3e50]/90 rounded-2xl flex items-center justify-center z-20 p-6 md:p-8">
-                <div className="grid grid-cols-4 gap-2 md:gap-3 w-full max-w-md">
-                  <div className="bg-white/90 backdrop-blur-sm rounded-lg md:rounded-xl p-3 md:p-4 shadow-xl">
-                    <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#d4af37] mb-1">{timeRemaining.days}</div>
-                    <div className="text-xs md:text-sm text-[#2c3e50] font-semibold">DAYS</div>
+              <div className="absolute inset-0 backdrop-blur-xl bg-gradient-to-br from-[#2c3e50]/90 via-[#34495e]/85 to-[#2c3e50]/90 rounded-2xl flex items-center justify-center z-20 p-4 overflow-hidden">
+                <div className="text-center w-full max-w-2xl px-4">
+                  <h3 className="text-lg md:text-xl lg:text-2xl font-serif text-white font-bold mb-3 md:mb-4 drop-shadow-lg leading-tight">
+                    Registrations Opening Soon!
+                  </h3>
+                  <div className="grid grid-cols-4 gap-2 md:gap-3 mb-3 md:mb-4 max-w-lg mx-auto">
+                    <div className="bg-white/90 backdrop-blur-sm rounded-lg md:rounded-xl p-2 md:p-3 shadow-xl">
+                      <div className="text-2xl md:text-3xl font-bold text-[#d4af37] mb-0.5 md:mb-1">{timeRemaining.days}</div>
+                      <div className="text-[0.6rem] md:text-xs text-[#2c3e50] font-semibold tracking-tight md:tracking-wider">DAYS</div>
+                    </div>
+                    <div className="bg-white/90 backdrop-blur-sm rounded-lg md:rounded-xl p-2 md:p-3 shadow-xl">
+                      <div className="text-2xl md:text-3xl font-bold text-[#d4af37] mb-0.5 md:mb-1">{timeRemaining.hours}</div>
+                      <div className="text-[0.6rem] md:text-xs text-[#2c3e50] font-semibold tracking-tight md:tracking-wider">HOURS</div>
+                    </div>
+                    <div className="bg-white/90 backdrop-blur-sm rounded-lg md:rounded-xl p-2 md:p-3 shadow-xl">
+                      <div className="text-2xl md:text-3xl font-bold text-[#d4af37] mb-0.5 md:mb-1">{timeRemaining.minutes}</div>
+                      <div className="text-[0.6rem] md:text-xs text-[#2c3e50] font-semibold tracking-tight md:tracking-wider">MINS</div>
+                    </div>
+                    <div className="bg-white/90 backdrop-blur-sm rounded-lg md:rounded-xl p-2 md:p-3 shadow-xl">
+                      <div className="text-2xl md:text-3xl font-bold text-[#d4af37] mb-0.5 md:mb-1">{timeRemaining.seconds}</div>
+                      <div className="text-[0.6rem] md:text-xs text-[#2c3e50] font-semibold tracking-tight md:tracking-wider">SECS</div>
+                    </div>
                   </div>
-                  <div className="bg-white/90 backdrop-blur-sm rounded-lg md:rounded-xl p-3 md:p-4 shadow-xl">
-                    <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#d4af37] mb-1">{timeRemaining.hours}</div>
-                    <div className="text-xs md:text-sm text-[#2c3e50] font-semibold">HOURS</div>
-                  </div>
-                  <div className="bg-white/90 backdrop-blur-sm rounded-lg md:rounded-xl p-3 md:p-4 shadow-xl">
-                    <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#d4af37] mb-1">{timeRemaining.minutes}</div>
-                    <div className="text-xs md:text-sm text-[#2c3e50] font-semibold">MINS</div>
-                  </div>
-                  <div className="bg-white/90 backdrop-blur-sm rounded-lg md:rounded-xl p-3 md:p-4 shadow-xl">
-                    <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#d4af37] mb-1">{timeRemaining.seconds}</div>
-                    <div className="text-xs md:text-sm text-[#2c3e50] font-semibold">SECS</div>
-                  </div>
+                  <p className="text-xs md:text-sm lg:text-base text-white font-semibold drop-shadow-md leading-tight">
+                    {TEACHER_REGISTRATION_OPENING_TEXT}
+                  </p>
                 </div>
               </div>
             )}
