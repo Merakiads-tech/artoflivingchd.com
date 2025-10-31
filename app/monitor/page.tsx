@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import { RefreshCw, AlertCircle } from 'lucide-react';
+import { RefreshCw, AlertCircle, Lock, Eye, EyeOff } from 'lucide-react';
 
 interface Ticket {
   name: string;
@@ -19,7 +19,13 @@ interface TicketData {
   error?: string;
 }
 
+const CORRECT_PASSWORD = 'letmetellyouoverthecall';
+
 export default function MonitorPage() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState('');
   const [ticketData, setTicketData] = useState<TicketData | null>(null);
   const [loading, setLoading] = useState(true);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
@@ -44,7 +50,25 @@ export default function MonitorPage() {
     }
   };
 
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password === CORRECT_PASSWORD) {
+      setIsAuthenticated(true);
+      setError('');
+      setPassword('');
+    } else {
+      setError('Incorrect password. Please try again.');
+      setPassword('');
+    }
+  };
+
   useEffect(() => {
+    // Only fetch if authenticated
+    if (!isAuthenticated) {
+      setLoading(false);
+      return;
+    }
+
     // Fetch immediately
     fetchTicketData();
 
@@ -52,7 +76,7 @@ export default function MonitorPage() {
     const interval = setInterval(fetchTicketData, 3000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [isAuthenticated]);
 
   const getStatusColor = (ticket: Ticket) => {
     if (ticket.soldOut || ticket.ticketsLeft === 0) return 'from-red-500/20 to-red-600/20 border-red-500/30';
@@ -66,6 +90,87 @@ export default function MonitorPage() {
     return ((ticket.ticketsBooked / ticket.totalCapacity) * 100).toFixed(1);
   };
 
+  // Login Screen
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center p-4 animate-gradient">
+        <div className="relative max-w-md w-full">
+          {/* Animated Background Blobs */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute -top-1/2 -right-1/2 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-blob"></div>
+            <div className="absolute -bottom-1/2 -left-1/2 w-96 h-96 bg-pink-500/20 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
+          </div>
+
+          {/* Login Card */}
+          <div className="relative bg-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/10 shadow-2xl">
+            {/* Lock Icon */}
+            <div className="flex justify-center mb-6">
+              <div className="bg-gradient-to-r from-purple-500 to-pink-500 p-4 rounded-full shadow-lg">
+                <Lock className="w-8 h-8 text-white" />
+              </div>
+            </div>
+
+            {/* Title */}
+            <h1 className="text-3xl font-bold text-center mb-2">
+              <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">
+                Soaking in Bliss
+              </span>
+            </h1>
+            <p className="text-white/70 text-center mb-6">Monitoring Dashboard</p>
+
+            {/* Login Form */}
+            <form onSubmit={handleLogin} className="space-y-4">
+              <div>
+                <label className="block text-white/80 text-sm font-semibold mb-2">
+                  Enter Password
+                </label>
+                <div className="relative">
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                    placeholder="Enter password..."
+                    autoFocus
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-white/60 hover:text-white transition-colors"
+                  >
+                    {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  </button>
+                </div>
+              </div>
+
+              {error && (
+                <div className="bg-red-500/20 border border-red-500/50 rounded-xl p-3 flex items-center gap-2">
+                  <AlertCircle className="w-5 h-5 text-red-400" />
+                  <p className="text-red-300 text-sm">{error}</p>
+                </div>
+              )}
+
+              <button
+                type="submit"
+                className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-purple-500/50 hover:scale-105"
+              >
+                Unlock Dashboard
+              </button>
+            </form>
+
+            {/* Footer */}
+            <div className="mt-6 text-center">
+              <p className="text-white/40 text-xs">
+                Powered by <span className="text-purple-400 font-semibold">Meraki Tech</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Main Dashboard (only shown after authentication)
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-4 animate-gradient">
       <div className="max-w-7xl mx-auto">
