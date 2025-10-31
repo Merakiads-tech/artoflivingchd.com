@@ -10,8 +10,7 @@
 
 // Main Page Registration Opening Date & Time
 // Format: 'YYYY-MM-DDTHH:mm:ss+05:30' (IST timezone)
-export const MAIN_REGISTRATION_OPEN_DATE = new Date('2025-10-31T12:32:00+05:30');
-// export const MAIN_REGISTRATION_OPEN_DATE = new Date('2025-10-30T16:09:30+05:30');
+export const MAIN_REGISTRATION_OPEN_DATE = new Date('2025-10-31T13:00:00+05:30');
 
 // Teachers Page Registration Opening Date & Time
 // Format: 'YYYY-MM-DDTHH:mm:ss+05:30' (IST timezone)
