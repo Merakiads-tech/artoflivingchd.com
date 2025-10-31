@@ -269,7 +269,14 @@ export default function TeacherCleanEvent() {
             </div>
             <h2 className="text-2xl font-serif text-[#2c3e50] tracking-wide drop-shadow-md">WITH</h2>
             <h2 className="text-3xl font-serif text-[#2c3e50] tracking-wider font-bold drop-shadow-md">Gurudev</h2>
-            <h2 className="text-3xl font-serif text-[#2c3e50] tracking-wider font-bold drop-shadow-md mb-6">Sri Sri Ravi Shankar Ji</h2>
+            <h2 className="text-3xl font-serif text-[#2c3e50] tracking-wider font-bold drop-shadow-md mb-4">Sri Sri Ravi Shankar Ji</h2>
+            
+            {/* Tagline */}
+            <div className="mb-6">
+              <p className="text-lg italic text-gray-600 font-serif leading-relaxed">
+                An evening of inner peace and joy
+              </p>
+            </div>
             
             {/* Date Badge */}
             <div className="inline-block bg-[#1a3a52] text-white rounded-2xl px-6 py-3 w-fit mb-4">

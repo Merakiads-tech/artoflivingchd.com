@@ -253,7 +253,14 @@ export default function CleanEvent() {
             </div>
             <h2 className="text-2xl font-serif text-[#2c3e50] tracking-wide drop-shadow-md">WITH</h2>
             <h2 className="text-3xl font-serif text-[#2c3e50] tracking-wider font-bold drop-shadow-md">Gurudev</h2>
-            <h2 className="text-3xl font-serif text-[#2c3e50] tracking-wider font-bold drop-shadow-md mb-6">Sri Sri Ravi Shankar Ji</h2>
+            <h2 className="text-3xl font-serif text-[#2c3e50] tracking-wider font-bold drop-shadow-md mb-4">Sri Sri Ravi Shankar Ji</h2>
+            
+            {/* Tagline */}
+            <div className="mb-6">
+              <p className="text-lg italic text-gray-600 font-serif leading-relaxed">
+                An evening of inner peace and joy
+              </p>
+            </div>
             
             {/* Date Badge */}
             <div className="inline-block bg-[#1a3a52] text-white rounded-2xl px-6 py-3 w-fit mb-4">
@@ -263,7 +270,6 @@ export default function CleanEvent() {
               <p className="text-xs tracking-widest mt-1">CHANDIGARH</p>
             </div>
 
-            {/* Venue & Timing Combined - Horizontal Layout */}
             <div className="bg-white rounded-2xl p-4 shadow-lg mb-4">
               <div className="flex items-center gap-2 mb-3">
                 <div className="w-8 h-8 bg-[#d4af37] rounded-full flex items-center justify-center">
