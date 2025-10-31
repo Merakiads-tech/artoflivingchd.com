@@ -69,37 +69,67 @@ export default function MonitorPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-4 animate-gradient">
       <div className="max-w-7xl mx-auto">
-        {/* Modern Header with Glassmorphism */}
-        <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 mb-6 border border-white/10 shadow-2xl">
-          <div className="flex items-center justify-between flex-wrap gap-4">
-            <div className="space-y-2">
-              <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent animate-pulse">
-                Soaking in Bliss
-              </h1>
-              <p className="text-lg text-white/80 font-semibold">Internal Monitoring Dashboard</p>
-              <div className="flex items-center gap-4 text-sm">
-                <span className="flex items-center gap-2 text-green-400">
-                  <span className="relative flex h-3 w-3">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-                  </span>
-                  Live • Updates every 3s
+        {/* HERO Header */}
+        <div className="relative bg-white/5 backdrop-blur-xl rounded-3xl p-8 md:p-12 mb-6 border border-white/10 shadow-2xl overflow-hidden">
+          {/* Animated Background Elements */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute -top-1/2 -right-1/2 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-blob"></div>
+            <div className="absolute -bottom-1/2 -left-1/2 w-96 h-96 bg-pink-500/20 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
+            <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-blob animation-delay-4000"></div>
+          </div>
+
+          <div className="relative z-10">
+            {/* Hero Title */}
+            <div className="text-center mb-8">
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-4 leading-tight">
+                <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent animate-pulse drop-shadow-2xl">
+                  Soaking in Bliss
                 </span>
-                {lastUpdated && (
-                  <span className="text-white/60">
-                    Last: {lastUpdated.toLocaleTimeString()}
-                  </span>
-                )}
+              </h1>
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <div className="h-px w-12 bg-gradient-to-r from-transparent via-purple-400 to-transparent"></div>
+                <p className="text-xl md:text-2xl text-white/90 font-bold tracking-wide">
+                  Internal Monitoring Dashboard
+                </p>
+                <div className="h-px w-12 bg-gradient-to-r from-transparent via-pink-400 to-transparent"></div>
+              </div>
+              
+              {/* Meraki Tech Credit */}
+              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-blue-500/20 backdrop-blur-sm px-6 py-2 rounded-full border border-white/20 shadow-lg">
+                <span className="text-sm text-white/60">Powered by</span>
+                <span className="text-sm font-bold bg-gradient-to-r from-purple-300 via-pink-300 to-blue-300 bg-clip-text text-transparent">
+                  Meraki Tech Infrastructure
+                </span>
+                <span className="text-xs">✨</span>
               </div>
             </div>
-            <button
-              onClick={fetchTicketData}
-              disabled={loading}
-              className="group relative bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-6 py-3 rounded-xl font-bold transition-all duration-300 flex items-center gap-2 disabled:opacity-50 shadow-lg hover:shadow-purple-500/50 hover:scale-105"
-            >
-              <RefreshCw className={`w-5 h-5 ${loading ? 'animate-spin' : 'group-hover:rotate-180'} transition-transform duration-500`} />
-              Refresh
-            </button>
+
+            {/* Stats Bar */}
+            <div className="flex items-center justify-center gap-6 flex-wrap">
+              <div className="flex items-center gap-2 text-green-400 bg-green-500/10 px-4 py-2 rounded-full border border-green-500/30">
+                <span className="relative flex h-3 w-3">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                </span>
+                <span className="text-sm font-semibold">Live • Updates every 3s</span>
+              </div>
+              
+              {lastUpdated && (
+                <div className="flex items-center gap-2 text-white/70 bg-white/5 px-4 py-2 rounded-full border border-white/10">
+                  <span className="text-sm">Last Updated:</span>
+                  <span className="text-sm font-bold text-white">{lastUpdated.toLocaleTimeString()}</span>
+                </div>
+              )}
+              
+              <button
+                onClick={fetchTicketData}
+                disabled={loading}
+                className="group relative bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-6 py-2.5 rounded-full font-bold transition-all duration-300 flex items-center gap-2 disabled:opacity-50 shadow-lg hover:shadow-purple-500/50 hover:scale-105"
+              >
+                <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : 'group-hover:rotate-180'} transition-transform duration-500`} />
+                <span className="text-sm">Refresh Now</span>
+              </button>
+            </div>
           </div>
         </div>
 
