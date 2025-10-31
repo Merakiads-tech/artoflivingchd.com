@@ -113,7 +113,7 @@ export const TEACHER_PAGE_TICKET: TicketConfig = {
   name: "Teacher Special",
   price: "₹7,000",
   bookingLink: "https://www.artofliving.online/donate.php?nca_id=922887",
-  soldOut: false,         // Change to true to mark as sold out
+  soldOut: true,         // Change to true to mark as sold out
   enabled: true,          // Change to false to hide this ticket
   capacity: 4
 };
