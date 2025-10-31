@@ -63,7 +63,7 @@ export const MAIN_PAGE_TICKETS: TicketConfig[] = [
     price: "₹7,000",
     bookingLink: "https://www.artofliving.online/donate.php?nca_id=922887",
     soldOut: true,        // Currently marked as sold out
-    enabled: true,
+    enabled: false,
     capacity: 4
   },
   {
