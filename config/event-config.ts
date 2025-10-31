@@ -95,7 +95,7 @@ export const MAIN_PAGE_TICKETS: TicketConfig[] = [
     price: "₹2,50,000",
     bookingLink: "https://www.artofliving.online/donate.php?nca_id=922862",
     soldOut: false,
-    enabled: true,
+    enabled: false,
     capacity: 4
   },
   {
@@ -103,7 +103,7 @@ export const MAIN_PAGE_TICKETS: TicketConfig[] = [
     price: "₹11,00,000",
     bookingLink: "https://www.artofliving.online/donate.php?nca_id=922852",
     soldOut: false,
-    enabled: true,
+    enabled: false,
     capacity: 4
   }
 ];
