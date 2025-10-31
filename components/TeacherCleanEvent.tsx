@@ -9,8 +9,7 @@ import {
   VENUE_NAME,
   VENUE_ADDRESS,
   VENUE_MAPS_LINK,
-  TEACHER_PAGE_TICKET,
-  isTeacherTicketEnabled
+  getSortedTeacherTickets
 } from '@/config/event-config';
 
 interface TimeRemaining {
@@ -28,8 +27,8 @@ interface TicketTier {
   capacity: number;
 }
 
-// Get teacher ticket from config (as array for mapping)
-const ticketTiers: TicketTier[] = isTeacherTicketEnabled() ? [TEACHER_PAGE_TICKET] : [];
+// Get all teacher tickets sorted by price (ascending)
+const ticketTiers: TicketTier[] = getSortedTeacherTickets();
 
 export default function TeacherCleanEvent() {
   const [timeRemaining, setTimeRemaining] = useState<TimeRemaining | null>(null);

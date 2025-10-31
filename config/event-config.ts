@@ -10,7 +10,7 @@
 
 // Main Page Registration Opening Date & Time
 // Format: 'YYYY-MM-DDTHH:mm:ss+05:30' (IST timezone)
-export const MAIN_REGISTRATION_OPEN_DATE = new Date('2025-10-31T00:21:00+05:30');
+export const MAIN_REGISTRATION_OPEN_DATE = new Date('2025-10-31T11:09:00+05:30');
 // export const MAIN_REGISTRATION_OPEN_DATE = new Date('2025-10-30T16:09:30+05:30');
 
 // Teachers Page Registration Opening Date & Time
@@ -63,7 +63,7 @@ export const MAIN_PAGE_TICKETS: TicketConfig[] = [
     name: "Teacher Special",
     price: "₹7,000",
     bookingLink: "https://www.artofliving.online/donate.php?nca_id=922887",
-    soldOut: false,        // Currently marked as sold out
+    soldOut: true,        // Currently marked as sold out
     enabled: true,
     capacity: 4
   },
@@ -109,15 +109,65 @@ export const MAIN_PAGE_TICKETS: TicketConfig[] = [
   }
 ];
 
-// Teachers Page Ticket
-export const TEACHER_PAGE_TICKET: TicketConfig = {
-  name: "Teacher Special",
-  price: "₹7,000",
-  bookingLink: "https://www.artofliving.online/donate.php?nca_id=922887",
-  soldOut: false,         // Change to true to mark as sold out
-  enabled: true,          // Change to false to hide this ticket
-  capacity: 4
-};
+// Teachers Page Tickets (separate configuration from main page)
+export const TEACHER_PAGE_TICKETS: TicketConfig[] = [
+  {
+    name: "Bronze",
+    price: "₹2,100",
+    bookingLink: "https://www.artofliving.online/donate.php?nca_id=922881",
+    soldOut: false,
+    enabled: true,
+    capacity: 1
+  },
+  {
+    name: "Teacher Special",
+    price: "₹7,000",
+    bookingLink: "https://www.artofliving.online/donate.php?nca_id=922887",
+    soldOut: true,
+    enabled: true,
+    capacity: 4
+  },
+  {
+    name: "Silver",
+    price: "₹11,000",
+    bookingLink: "https://www.artofliving.online/donate.php?nca_id=922871",
+    soldOut: false,
+    enabled: true,
+    capacity: 2
+  },
+  {
+    name: "Gold",
+    price: "₹51,000",
+    bookingLink: "https://www.artofliving.online/donate.php?nca_id=922867",
+    soldOut: false,
+    enabled: true,
+    capacity: 2
+  },
+  {
+    name: "Diamond",
+    price: "₹1,00,000",
+    bookingLink: "https://www.artofliving.online/donate.php?nca_id=922865",
+    soldOut: false,
+    enabled: true,
+    capacity: 2
+  },
+  {
+    name: "Platinum",
+    price: "₹2,50,000",
+    bookingLink: "https://www.artofliving.online/donate.php?nca_id=922862",
+    soldOut: false,
+    enabled: true,
+    capacity: 4
+  },
+  {
+    name: "Emerald",
+    price: "₹11,00,000",
+    bookingLink: "https://www.artofliving.online/donate.php?nca_id=922852",
+    soldOut: false,
+    enabled: true,
+    capacity: 4
+  }
+];
 
 // ============================================
 // HELPER FUNCTIONS
@@ -137,7 +187,16 @@ export const getSortedMainTickets = (): TicketConfig[] => {
   });
 };
 
-// Check if teacher ticket is enabled
-export const isTeacherTicketEnabled = (): boolean => {
-  return TEACHER_PAGE_TICKET.enabled;
+// Get only enabled teacher tickets (filters out disabled tickets)
+export const getEnabledTeacherTickets = (): TicketConfig[] => {
+  return TEACHER_PAGE_TICKETS.filter(ticket => ticket.enabled);
+};
+
+// Get enabled teacher tickets sorted by price (ascending)
+export const getSortedTeacherTickets = (): TicketConfig[] => {
+  return getEnabledTeacherTickets().sort((a, b) => {
+    const priceA = parseInt(a.price.replace(/[₹,]/g, ''));
+    const priceB = parseInt(b.price.replace(/[₹,]/g, ''));
+    return priceA - priceB;
+  });
 };
