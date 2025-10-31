@@ -20,9 +20,10 @@ interface TicketData {
 }
 
 const CORRECT_PASSWORD = 'letmetellyouoverthecall';
+const ENABLE_LOGIN = false; // Set to true to enable password protection
 
 export default function MonitorPage() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(!ENABLE_LOGIN);
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
@@ -90,8 +91,8 @@ export default function MonitorPage() {
     return ((ticket.ticketsBooked / ticket.totalCapacity) * 100).toFixed(1);
   };
 
-  // Login Screen
-  if (!isAuthenticated) {
+  // Login Screen (only shown if ENABLE_LOGIN is true)
+  if (ENABLE_LOGIN && !isAuthenticated) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center p-4 animate-gradient">
         <div className="relative max-w-md w-full">
