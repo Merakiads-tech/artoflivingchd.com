@@ -48,8 +48,8 @@ export default function MonitorPage() {
     // Fetch immediately
     fetchTicketData();
 
-    // Auto-refresh every 1 second
-    const interval = setInterval(fetchTicketData, 1000);
+    // Auto-refresh every 3 seconds
+    const interval = setInterval(fetchTicketData, 3000);
 
     return () => clearInterval(interval);
   }, []);
@@ -67,30 +67,37 @@ export default function MonitorPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#1a1a2e] via-[#2d2d44] to-[#1a1a2e] p-4">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-4 animate-gradient">
       <div className="max-w-7xl mx-auto">
-        {/* Compact Header */}
-        <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 mb-4 border border-white/20">
-          <div className="flex items-center justify-between flex-wrap gap-3">
-            <div>
-              <h1 className="text-2xl font-bold text-white">
-                Soaking in Bliss (Internal Monitoring Dashboard)
+        {/* Modern Header with Glassmorphism */}
+        <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 mb-6 border border-white/10 shadow-2xl">
+          <div className="flex items-center justify-between flex-wrap gap-4">
+            <div className="space-y-2">
+              <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent animate-pulse">
+                Soaking in Bliss
               </h1>
-              <p className="text-white/60 text-sm">
-                Real-time • Updates every 1s
+              <p className="text-lg text-white/80 font-semibold">Internal Monitoring Dashboard</p>
+              <div className="flex items-center gap-4 text-sm">
+                <span className="flex items-center gap-2 text-green-400">
+                  <span className="relative flex h-3 w-3">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                  </span>
+                  Live • Updates every 3s
+                </span>
                 {lastUpdated && (
-                  <span className="ml-3">
+                  <span className="text-white/60">
                     Last: {lastUpdated.toLocaleTimeString()}
                   </span>
                 )}
-              </p>
+              </div>
             </div>
             <button
               onClick={fetchTicketData}
               disabled={loading}
-              className="bg-[#d4af37] hover:bg-[#c9a961] text-white px-4 py-2 rounded-lg font-semibold transition-all flex items-center gap-2 disabled:opacity-50 text-sm"
+              className="group relative bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-6 py-3 rounded-xl font-bold transition-all duration-300 flex items-center gap-2 disabled:opacity-50 shadow-lg hover:shadow-purple-500/50 hover:scale-105"
             >
-              <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+              <RefreshCw className={`w-5 h-5 ${loading ? 'animate-spin' : 'group-hover:rotate-180'} transition-transform duration-500`} />
               Refresh
             </button>
           </div>
@@ -107,77 +114,84 @@ export default function MonitorPage() {
           </div>
         )}
 
-        {/* Compact Ticket Grid */}
+        {/* Modern Ticket Grid */}
         {ticketData?.tickets && ticketData.tickets.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
-            {ticketData.tickets.map((ticket) => {
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {ticketData.tickets.map((ticket, index) => {
               const percentage = getPercentage(ticket);
               
               return (
                 <div
                   key={ticket.eventId}
-                  className={`bg-gradient-to-br ${getStatusColor(ticket)} backdrop-blur-md rounded-xl p-4 border transition-all hover:scale-105`}
+                  className={`group relative bg-gradient-to-br ${getStatusColor(ticket)} backdrop-blur-xl rounded-2xl p-5 border transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20 animate-fade-in`}
+                  style={{ animationDelay: `${index * 100}ms` }}
                 >
+                  {/* Glow Effect */}
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-500/0 via-pink-500/0 to-blue-500/0 group-hover:from-purple-500/10 group-hover:via-pink-500/10 group-hover:to-blue-500/10 transition-all duration-500"></div>
+                  
                   {/* Ticket Header */}
-                  <div className="flex items-start justify-between mb-3">
+                  <div className="relative flex items-start justify-between mb-4">
                     <div className="flex-1">
-                      <h3 className="text-white font-bold text-lg leading-tight">
+                      <h3 className="text-white font-bold text-xl leading-tight mb-1 group-hover:text-purple-300 transition-colors">
                         {ticket.name}
                       </h3>
-                      <p className="text-white/70 text-sm">{ticket.price}</p>
+                      <p className="text-white/80 text-sm font-semibold bg-white/10 px-2 py-1 rounded-lg inline-block">
+                        {ticket.price}
+                      </p>
                     </div>
                     {ticket.soldOut && (
-                      <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full font-bold">
+                      <span className="bg-gradient-to-r from-red-500 to-red-600 text-white text-xs px-3 py-1.5 rounded-full font-bold shadow-lg animate-pulse">
                         SOLD OUT
                       </span>
                     )}
                   </div>
 
-                  {/* Stats */}
+                  {/* Stats with Animation */}
                   {!ticket.error ? (
                     <>
-                      <div className="grid grid-cols-3 gap-2 mb-3">
-                        <div className="bg-white/10 rounded-lg p-2 text-center">
-                          <div className="text-white font-bold text-xl">
+                      <div className="relative grid grid-cols-3 gap-2 mb-4">
+                        <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-xl p-3 text-center transform transition-all duration-300 hover:scale-110 hover:bg-white/20">
+                          <div className="text-white font-bold text-2xl mb-1 tabular-nums animate-count-up">
                             {ticket.ticketsBooked}
                           </div>
-                          <div className="text-white/60 text-xs">Booked</div>
+                          <div className="text-white/70 text-xs font-semibold">Booked</div>
                         </div>
-                        <div className="bg-white/10 rounded-lg p-2 text-center">
-                          <div className="text-white font-bold text-xl">
+                        <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-xl p-3 text-center transform transition-all duration-300 hover:scale-110 hover:bg-white/20">
+                          <div className="text-white font-bold text-2xl mb-1 tabular-nums animate-count-up">
                             {ticket.ticketsLeft}
                           </div>
-                          <div className="text-white/60 text-xs">Left</div>
+                          <div className="text-white/70 text-xs font-semibold">Left</div>
                         </div>
-                        <div className="bg-white/10 rounded-lg p-2 text-center">
-                          <div className="text-white font-bold text-xl">
+                        <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-xl p-3 text-center transform transition-all duration-300 hover:scale-110 hover:bg-white/20">
+                          <div className="text-white font-bold text-2xl mb-1 tabular-nums">
                             {ticket.totalCapacity}
                           </div>
-                          <div className="text-white/60 text-xs">Total</div>
+                          <div className="text-white/70 text-xs font-semibold">Total</div>
                         </div>
                       </div>
 
-                      {/* Progress Bar */}
-                      <div className="relative h-6 bg-white/10 rounded-full overflow-hidden">
+                      {/* Modern Progress Bar */}
+                      <div className="relative h-8 bg-white/10 rounded-full overflow-hidden shadow-inner">
                         <div
-                          className="absolute top-0 left-0 h-full bg-gradient-to-r from-green-500 to-[#d4af37] transition-all duration-300 flex items-center justify-center"
+                          className="absolute top-0 left-0 h-full bg-gradient-to-r from-emerald-500 via-cyan-500 to-purple-500 transition-all duration-1000 ease-out flex items-center justify-center shadow-lg"
                           style={{ width: `${percentage}%` }}
                         >
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
                           {parseFloat(percentage) > 15 && (
-                            <span className="text-white font-bold text-xs">
+                            <span className="relative text-white font-bold text-sm drop-shadow-lg">
                               {percentage}%
                             </span>
                           )}
                         </div>
                         {parseFloat(percentage) <= 15 && (
-                          <span className="absolute inset-0 flex items-center justify-center text-white font-bold text-xs">
+                          <span className="absolute inset-0 flex items-center justify-center text-white font-bold text-sm drop-shadow-lg">
                             {percentage}%
                           </span>
                         )}
                       </div>
                     </>
                   ) : (
-                    <div className="text-red-400 text-sm text-center py-4">
+                    <div className="text-red-400 text-sm text-center py-6 font-semibold">
                       {ticket.error}
                     </div>
                   )}
