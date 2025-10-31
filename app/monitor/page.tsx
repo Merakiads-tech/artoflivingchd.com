@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { RefreshCw, AlertCircle } from 'lucide-react';
 
 interface Ticket {
@@ -23,7 +23,6 @@ export default function MonitorPage() {
   const [ticketData, setTicketData] = useState<TicketData | null>(null);
   const [loading, setLoading] = useState(true);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
-  const initialCapacities = useRef<Record<string, number>>({});
 
   const fetchTicketData = async () => {
     setLoading(true);
@@ -35,27 +34,6 @@ export default function MonitorPage() {
         },
       });
       const data = await response.json();
-      
-      // Store initial capacities and calculate booked tickets
-      if (data.tickets) {
-        data.tickets = data.tickets.map((ticket: Ticket) => {
-          // Store initial capacity if not stored
-          if (!initialCapacities.current[ticket.eventId] && ticket.totalCapacity > 0) {
-            initialCapacities.current[ticket.eventId] = ticket.totalCapacity;
-          }
-          
-          // Calculate booked tickets
-          const capacity = initialCapacities.current[ticket.eventId] || ticket.totalCapacity;
-          const booked = ticket.soldOut ? capacity : capacity - ticket.ticketsLeft;
-          
-          return {
-            ...ticket,
-            totalCapacity: capacity,
-            ticketsBooked: booked,
-          };
-        });
-      }
-      
       setTicketData(data);
       setLastUpdated(new Date());
     } catch (error) {

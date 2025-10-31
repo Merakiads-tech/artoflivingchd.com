@@ -1,14 +1,14 @@
 import { NextResponse } from 'next/server';
 
-// Ticket configuration with event IDs
+// Ticket configuration with event IDs and fixed capacities
 const TICKETS = [
-  { name: 'Bronze', eventId: '922881', price: '₹2,100' },
-  { name: 'Teacher Special', eventId: '922887', price: '₹7,000' },
-  { name: 'Silver', eventId: '922871', price: '₹11,000' },
-  { name: 'Gold', eventId: '922867', price: '₹51,000' },
-  { name: 'Diamond', eventId: '922865', price: '₹1,00,000' },
-  { name: 'Platinum', eventId: '922862', price: '₹2,50,000' },
-  { name: 'Emerald', eventId: '922852', price: '₹11,00,000' },
+  { name: 'Bronze', eventId: '922881', price: '₹2,100', capacity: 2820 },
+  { name: 'Teacher Special', eventId: '922887', price: '₹7,000', capacity: 104 },
+  { name: 'Silver', eventId: '922871', price: '₹11,000', capacity: 50 },
+  { name: 'Gold', eventId: '922867', price: '₹51,000', capacity: 40 },
+  { name: 'Diamond', eventId: '922865', price: '₹1,00,000', capacity: 20 },
+  { name: 'Platinum', eventId: '922862', price: '₹2,50,000', capacity: 10 },
+  { name: 'Emerald', eventId: '922852', price: '₹11,00,000', capacity: 6 },
 ];
 
 async function fetchTicketData(eventId: string) {
@@ -48,8 +48,8 @@ export async function GET() {
               eventId: ticket.eventId,
               soldOut: true,
               ticketsLeft: 0,
-              ticketsBooked: 0,
-              totalCapacity: 0,
+              ticketsBooked: ticket.capacity,
+              totalCapacity: ticket.capacity,
               error: null,
             };
           }
@@ -58,7 +58,7 @@ export async function GET() {
           const subCampaign = data.sub_campaigns?.[0];
           if (subCampaign) {
             const ticketsLeft = subCampaign.upper_limit;
-            const totalCapacity = ticketsLeft; // Use current upper_limit as total capacity
+            const ticketsBooked = ticket.capacity - ticketsLeft;
             
             return {
               name: ticket.name,
@@ -66,8 +66,8 @@ export async function GET() {
               eventId: ticket.eventId,
               soldOut: false,
               ticketsLeft,
-              ticketsBooked: 0, // Will be calculated on first load
-              totalCapacity,
+              ticketsBooked,
+              totalCapacity: ticket.capacity,
               error: null,
             };
           }
@@ -79,7 +79,7 @@ export async function GET() {
             soldOut: false,
             ticketsLeft: 0,
             ticketsBooked: 0,
-            totalCapacity: 0,
+            totalCapacity: ticket.capacity,
             error: 'No data available',
           };
         } catch (error) {
@@ -91,7 +91,7 @@ export async function GET() {
             soldOut: false,
             ticketsLeft: 0,
             ticketsBooked: 0,
-            totalCapacity: 0,
+            totalCapacity: ticket.capacity,
             error: 'Failed to fetch',
           };
         }
