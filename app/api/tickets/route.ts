@@ -3,12 +3,12 @@ import { NextResponse } from 'next/server';
 // Ticket configuration with event IDs and fixed capacities
 const TICKETS = [
   { name: 'Bronze', eventId: '922881', price: '₹2,100', capacity: 2820 },
-  { name: 'Teacher Special', eventId: '922887', price: '₹7,000', capacity: 104 },
+  { name: 'Teacher Special', eventId: '922887', price: '₹7,000', capacity: 300 },
   { name: 'Silver', eventId: '922871', price: '₹11,000', capacity: 50 },
   { name: 'Gold', eventId: '922867', price: '₹51,000', capacity: 40 },
   { name: 'Diamond', eventId: '922865', price: '₹1,00,000', capacity: 20 },
   { name: 'Platinum', eventId: '922862', price: '₹2,50,000', capacity: 10 },
-  { name: 'Emerald', eventId: '922852', price: '₹11,00,000', capacity: 6 },
+  { name: 'Emerald', eventId: '922852', price: '₹11,00,000', capacity: 5 },
 ];
 
 async function fetchTicketData(eventId: string) {
